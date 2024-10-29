@@ -77,20 +77,20 @@ Summary Table:
 
 ###  Customer Item Weights:
 ```
-Range: 5-50 kg
-- Minimum Package Weight: 5 kg
-- Maximum Package Weight: 50 kg
+Range: 50-100 kg (Multiple of 5)
+- Minimum Package Weight: 50 kg
+- Maximum Package Weight: 100 kg
 ```
 
 ### Vehicle Speed:
 ```
-Constant Operating Speed: 25 kmph
+Constant Operating Speed: 25 kmph (Considering Traffic)
 (Fixed for all vehicle categories and conditions)
 ```
 
 ### Charging Rate:
 ```
-Constant Charging Rate: 22 kW
+Constant Charging Rate: 22 kW 
 (Standard Level 2 AC charging for all vehicles)
 ```
 
@@ -108,38 +108,27 @@ These constants will apply uniformly across all EV categories:
 1. For Customer Locations:
 ```
 Distance from Depot to Customers:
-- Minimum: 5 km
-- Maximum: 30 km
+- Minimum: 10 km
+- Maximum: 50 km
 (Ensures coverage within city/suburban limits)
 
 Distance between Customers:
-- Minimum: 2 km (avoid unrealistic clustering)
-- Maximum: 15 km (reasonable travel between deliveries)
+- Minimum: 10 km (avoid unrealistic clustering)
+- Maximum: 20 km (reasonable travel between deliveries)
 ```
 
 2. For Charging Station Placement:
 ```
 Distance between Charging Stations:
-- Minimum: 10 km
-- Maximum: 25 km
+- Minimum: 20 km
+- Maximum: 40 km
 (Based on EV ranges and safety margins)
 
 Distance from Customers to Nearest Charging Station:
-- Maximum: 15 km
+- Maximum: 20 km
 (Ensures reachability with low battery)
 
 Coverage Requirements:
 - Each customer should have at least one charging station within 15 km
 - Each charging station should serve minimum 3-4 customers
 ```
-
-Rationale:
-1. Minimum distances ensure realistic spacing
-2. Maximum distances are set to:
-   - Allow round trips on 20% battery (minimum range ~28 km for smallest EV)
-   - Enable reaching next charging station even at low battery
-   - Cover typical urban/suburban delivery areas
-3. Charging station spacing ensures:
-   - No "charging deserts"
-   - Efficient coverage without redundancy
-   - Safety margin for battery depletion
