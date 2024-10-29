@@ -109,26 +109,24 @@ These constants will apply uniformly across all EV categories:
 ```
 Distance from Depot to Customers:
 - Minimum: 10 km
-- Maximum: 50 km
+- Maximum: 60 km
 (Ensures coverage within city/suburban limits)
 
 Distance between Customers:
-- Minimum: 10 km (avoid unrealistic clustering)
-- Maximum: 20 km (reasonable travel between deliveries)
+- Minimum: 5 km (avoid unrealistic clustering)
 ```
 
 2. For Charging Station Placement:
 ```
 Distance between Charging Stations:
 - Minimum: 20 km
-- Maximum: 40 km
 (Based on EV ranges and safety margins)
 
 Distance from Customers to Nearest Charging Station:
-- Maximum: 20 km
+- Maximum: 30 km
 (Ensures reachability with low battery)
 
 Coverage Requirements:
-- Each customer should have at least one charging station within 15 km
+- Each customer should have at least one charging station within 30 km
 - Each charging station should serve minimum 3-4 customers
 ```
