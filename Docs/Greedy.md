@@ -126,24 +126,33 @@ Remaining: []
 PROCEDURE Create_New_Route:
     route ← [depot]
     current_load ← 0
-    vehicle_type ← 'xlarge'  // Start with largest vehicle
+    current_battery ← 100%
+    vehicle_type ← 'xlarge'  // Start with largest vehicle but will optimize later
     
     WHILE can_add_more_customers:
         next_customer ← Find_Best_Next_Customer(
             current_location,
             unserved_customers,
-            current_load
+            current_load,
+            current_battery
         )
         
         IF next_customer is None:
             BREAK
             
+        distance_to_customer ← Calculate_Distance(current_location, next_customer)
+        distance_to_depot ← Calculate_Distance(current_location, depot)
+        
+        IF distance_to_customer > distance_to_depot:
+            BREAK  // End route here and start new one
+            
         Add next_customer to route
         Update current_load
+        Update current_battery
         Remove next_customer from unserved_customers
         
     Add depot to route
-    Optimize_Vehicle_Type(route)
+    Try_Smaller_Vehicle(route)  // Try to optimize down from xlarge
     Insert_Charging_Stations(route)
     
     Return route
@@ -171,13 +180,44 @@ PROCEDURE Find_Best_Next_Customer:
     min_distance ← infinity
     
     FOR each customer in unserved_customers:
-        IF Is_Feasible(customer, current_load):
-            distance ← Calculate_Distance(current_location, customer)
-            IF distance < min_distance:
-                min_distance ← distance
+        // Calculate distances
+        distance_to_customer ← Calculate_Distance(current_location, customer)
+        distance_to_depot ← Calculate_Distance(current_location, depot)
+        
+        // Skip if customer is farther than depot
+        IF distance_to_customer > distance_to_depot:
+            CONTINUE
+            
+        IF Is_Feasible(customer, current_load, current_battery):
+            IF distance_to_customer < min_distance:
+                min_distance ← distance_to_customer
                 best_customer ← customer
                 
     Return best_customer
+
+Example:
+Current Location: (60, 60)
+Unserved Customers:
+1. Customer A: 
+   - Location: (44, 93)
+   - Distance: 35.4km
+   - Distance to depot: 40.2km
+   - Status: Consider (35.4 < 40.2) ✓
+
+2. Customer B:
+   - Location: (46, 58)
+   - Distance: 14.2km
+   - Distance to depot: 40.2km
+   - Status: Consider (14.2 < 40.2) ✓ 
+   - Current best (shortest distance) ✓
+
+3. Customer C:
+   - Location: (95, 70)
+   - Distance: 45.3km
+   - Distance to depot: 40.2km
+   - Status: Skip (45.3 > 40.2) ✗
+
+Select: Customer B (shortest feasible distance)
 ```
 
 ### Example:
@@ -199,20 +239,85 @@ Select: Customer 2 (shortest feasible distance)
 ## Section 4. Feasibility Check
 
 ```plaintext
-PROCEDURE Is_Feasible:
-    // Check vehicle capacity
-    IF current_load + customer_demand > max_vehicle_capacity:
+PROCEDURE Is_Feasible(customer, current_load, current_battery):
+    // 1. Basic Load Check
+    new_load ← current_load + customer_demand
+    IF new_load > vehicle_specs.capacity:
         Return False
         
-    // Check battery range
-    energy_to_customer ← Calculate_Energy(current_location, customer)
-    energy_to_depot ← Calculate_Energy(customer, depot)
-    total_energy ← energy_to_customer + energy_to_depot
+    // 2. Battery Check for Direct Travel
+    distance_to_customer ← Calculate_Distance(current_location, customer)
+    energy_to_customer ← Calculate_Energy_Consumption(
+        distance_to_customer,
+        new_load
+    )
     
-    IF total_energy > battery_capacity:
-        Return False
+    // 3. Check Return to Depot Possibility
+    distance_to_depot ← Calculate_Distance(customer, depot)
+    energy_to_depot ← Calculate_Energy_Consumption(
+        distance_to_depot,
+        new_load - customer_demand  // Load after delivery
+    )
+    
+    total_energy_needed ← energy_to_customer + energy_to_depot
+    remaining_battery ← current_battery - energy_to_customer
+    
+    // 4. Check if Direct Route is Possible
+    IF remaining_battery >= energy_to_depot + safety_margin:
+        Return True
         
-    Return True
+    // 5. Check if Route with Charging is Possible
+    nearest_cs ← Find_Nearest_Charging_Station(customer)
+    IF nearest_cs exists:
+        energy_to_cs ← Calculate_Energy_Consumption(
+            current_location,
+            nearest_cs,
+            current_load
+        )
+        energy_cs_to_customer ← Calculate_Energy_Consumption(
+            nearest_cs,
+            customer,
+            current_load
+        )
+        energy_customer_to_depot ← Calculate_Energy_Consumption(
+            customer,
+            depot,
+            current_load - customer_demand
+        )
+        
+        // Check if can reach CS and then complete route
+        IF current_battery >= energy_to_cs + safety_margin AND
+           battery_capacity >= energy_cs_to_customer + 
+                             energy_customer_to_depot + 
+                             safety_margin:
+            Return True
+            
+    Return False
+
+Example:
+Check Customer 5:
+1. Load Check:
+   - Current load: 200kg
+   - Customer demand: 95kg
+   - New total: 295kg < 800kg ✓
+   
+2. Direct Battery Check:
+   - Current battery: 70%
+   - To customer: 30%
+   - To depot: 45%
+   - Remaining after customer: 40%
+   - Needed for depot: 45%
+   - Direct route not possible ✗
+   
+3. Charging Station Check:
+   - Nearest CS distance: 15km
+   - Energy to CS: 20%
+   - Energy CS to customer: 25%
+   - Energy customer to depot: 45%
+   - Can reach CS: Yes (70% > 20% + safety_margin) ✓
+   - Can complete route after charging: Yes ✓
+   
+Result: Feasible (with charging) ✓
 ```
 
 ### Example:
@@ -275,12 +380,17 @@ Final Route: [0 → 2 → CS1 → 4 → 0]
 ## Section 6. Vehicle Type Optimization
 
 ```plaintext
-PROCEDURE Optimize_Vehicle_Type:
+PROCEDURE Try_Smaller_Vehicle:
     route_load ← Calculate_Total_Load(route)
+    route_distance ← Calculate_Total_Distance(route)
+    required_energy ← Calculate_Required_Energy(route)
     
-    FOR vehicle_type in sorted_by_capacity:
-        IF vehicle_type.capacity >= route_load:
+    // Try vehicles from small to xlarge
+    FOR vehicle_type in ['small', 'medium', 'large', 'xlarge']:
+        IF Can_Service_Route(route, vehicle_type):
             Return vehicle_type
+            
+    Return 'xlarge'  // Fallback to largest if needed
 ```
 
 ### Example:
