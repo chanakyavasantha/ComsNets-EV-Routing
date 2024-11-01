@@ -1,15 +1,27 @@
 ### Project Structure:
 ```
 .
-├── Algorithms
+├── Docs
+│   ├── Greedy.md
+│   ├── InputAssumptions.md
+│   ├── InputGeneration.md
 │   └── SA.md
 ├── Notebooks
-│   └── ComsNets-SA-Heuristics.ipynb
+│   ├── Greedy.ipynb
+│   ├── Input.ipynb
+│   ├── SA.ipynb
+│   └── TestCaseVisualizer.ipynb
 ├── Results
 ├── readme.md
-└── requirements.txt
+├── requirements.txt
+└── test_cases
+    ├── customers_10
+    ├── customers_20
+    ├── customers_30
+    ├── customers_40
+    └── customers_50  
 
-4 directories, 4 files
+10 directories, 210 files
 ```
 
 ### Setup Instructions:
