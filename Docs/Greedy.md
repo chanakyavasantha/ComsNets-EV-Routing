@@ -17,22 +17,20 @@ Output:
 
 ```
 1. Solution Class Structure
-class Solution:
+class EVRPSolution:
     def __init__(self):
-        self.routes = []              # List of Route objects
-        self.total_distance = 0.0     # Total distance traveled by all vehicles
-        self.total_energy = 0.0       # Total energy consumed by all vehicles
-        self.total_time = 0.0         # Total delivery time
-        self.computation_time = 0.0   # Time taken to compute solution
-class Route:
-    def __init__(self):
-        self.sequence = []        # List of locations (depot=0, customer>0, charging_station<0)
-        self.vehicle_type = ""    # Type of EV assigned (small/medium/large/xlarge)
-        self.load = 0.0          # Total load for this route
-        self.distance = 0.0      # Total distance of route
-        self.energy = 0.0        # Total energy consumption
-        self.delivery_time = 0.0 # Total time including travel and charging
+        self.routes = []
+        self.vehicle_types = []
+        self.route_loads = []
+        self.route_distances = []
+        self.route_energies = []
+        self.delivery_times = []
+        self.computation_time = 0.0
 
+    def add_route(self, route, vehicle_type, load):
+        self.routes.append(route)
+        self.vehicle_types.append(vehicle_type)
+        self.route_loads.append(load)
 
 2. Example Solution Format
 # Example solution for 5 customers and 3 charging stations
@@ -90,37 +88,101 @@ route = [0, 2, -1, 4, 0]
 ## Section 1: Main Algorithm Structure
 
 ```plaintext
-PROCEDURE GreedyEVRP_Solve:
-    unserved_customers ← all_customers
-    solution ← empty_solution
-    
-    WHILE unserved_customers is not empty:
-        route ← Create_New_Route()
-        Add route to solution
+PROCEDURE ModifiedGreedyEVRP_Solve:
+    1. Calculate Initial Fleet Size
+        total_demand ← Sum of all customer demands
+        unit_fleet_capacity ← (700 + 600 + 500)  // Sum of one of each vehicle type
+        min_vehicles_needed ← Ceiling(total_demand / (0.25 * unit_fleet_capacity))
         
+    2. Initialize Fleet Management
+        fleet ← Initialize_Fleet(min_vehicles_needed)  // Starts with min_vehicles_needed of each type
+        
+    3. Initialize Solution
+        unserved_customers ← all_customers
+        solution ← empty_solution
+        available_vehicles ← Generate_Vehicle_Sequence(fleet)
+        // Available vehicles will be in order: [large, large, ..., medium, medium, ..., small, small, ...]
+        
+    4. Main Routing Loop
+        current_vehicle_index ← 0
+        
+        WHILE unserved_customers is not empty:
+            IF current_vehicle_index >= len(available_vehicles):
+                Increase_Fleet_Size()
+                Regenerate_Vehicle_Sequence()
+                current_vehicle_index ← 0
+                
+            vehicle_type ← available_vehicles[current_vehicle_index]
+            route ← Create_New_Route(vehicle_type)
+            Add route to solution
+            current_vehicle_index += 1
+            
     Return solution
 ```
 
 ### Example:
-```plaintext
+
+```
 Initial State:
 - Customers: [1, 2, 3, 4, 5]
 - Demands: [90, 50, 65, 60, 95]
+- Total Demand: 360kg
+- Unit Fleet Capacity (1 of each): 1800kg
+- Min Vehicles Calculation:
+  360 ≤ 0.25 * n * 1800
+  360 ≤ 450n
+  n ≥ 0.8
+  min_vehicles_needed = 1 (ceiling)
 
-Iteration 1:
-- Create Route 1: [0 → 2 → 4 → 0] (demands 50 + 60 = 110kg)
-Remaining: [1, 3, 5]
+Initial Fleet (1 of each type):
+- 1 large (700kg)
+- 1 medium (600kg)
+- 1 small (500kg)
 
-Iteration 2:
-- Create Route 2: [0 → 3 → 0] (demand 65kg)
-Remaining: [1, 5]
+Vehicle Assignment Sequence:
+1. First Route: Large Vehicle (700kg)
+   - Serves: [2, 4, 3] (175kg total)
+   
+2. Second Route: Medium Vehicle (600kg)
+   - Serves: [1] (90kg)
+   
+3. Third Route: Small Vehicle (500kg)
+   - Serves: [5] (95kg)
 
-Iteration 3:
-- Create Route 3: [0 → 1 → 5 → 0] (demands 90 + 95 = 185kg)
-Remaining: []
+All customers served with initial fleet ✓
 ```
 
-## Section 2: Route Creation
+
+## Section 2. Fleet Management
+```
+PROCEDURE Calculate_Min_Vehicles_Needed(total_demand):
+    unit_fleet_capacity ← 700 + 600 + 500  // Sum of one of each vehicle type
+    min_vehicles ← Ceiling(total_demand / (0.25 * unit_fleet_capacity))
+    Return min_vehicles
+
+PROCEDURE Initialize_Fleet(min_vehicles_needed):
+    fleet ← {
+        'large': min_vehicles_needed,
+        'medium': min_vehicles_needed,
+        'small': min_vehicles_needed
+    }
+    Return fleet
+
+PROCEDURE Generate_Vehicle_Sequence(fleet):
+    sequence ← []
+    FOR vehicle_type in ['large', 'medium', 'small']:
+        FOR i in range(fleet[vehicle_type]):
+            Add vehicle_type to sequence
+    Return sequence
+
+PROCEDURE Increase_Fleet_Size:
+    FOR each vehicle_type in fleet:
+        fleet[vehicle_type] += 1
+
+
+```
+
+## Section 3: Route Creation
 
 ```plaintext
 PROCEDURE Create_New_Route:
@@ -172,7 +234,7 @@ Current Location: depot (60, 60)
 6. Add charging: [0 → 2 → CS1 → 4 → 0]
 ```
 
-## Section 3. Customer Selection
+## Section 4. Customer Selection
 
 ```plaintext
 PROCEDURE Find_Best_Next_Customer:
@@ -236,7 +298,7 @@ Selection Process:
 Select: Customer 2 (shortest feasible distance)
 ```
 
-## Section 4. Feasibility Check
+## Section 5. Feasibility Check
 
 ```plaintext
 PROCEDURE Is_Feasible(customer, current_load, current_battery):
@@ -377,21 +439,8 @@ Insert Charging:
 Final Route: [0 → 2 → CS1 → 4 → 0]
 ```
 
-## Section 6. Vehicle Type Optimization
 
-```plaintext
-PROCEDURE Try_Smaller_Vehicle:
-    route_load ← Calculate_Total_Load(route)
-    route_distance ← Calculate_Total_Distance(route)
-    required_energy ← Calculate_Required_Energy(route)
-    
-    // Try vehicles from small to xlarge
-    FOR vehicle_type in ['small', 'medium', 'large', 'xlarge']:
-        IF Can_Service_Route(route, vehicle_type):
-            Return vehicle_type
-            
-    Return 'xlarge'  // Fallback to largest if needed
-```
+
 
 ### Example:
 ```plaintext
@@ -431,3 +480,6 @@ def is_battery_sufficient(route, battery_level):
                          for leg in route_legs)
     return battery_level >= required_energy + safety_margin
 ```
+
+
+
