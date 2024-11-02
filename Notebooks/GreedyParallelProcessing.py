@@ -162,7 +162,7 @@ class GreedyEVRPSolver:
             self.ev_config.categories['small']['load_capacity']
         )
         min_vehicles = math.ceil(total_demand / (unit_fleet_capacity))
-        print(min_vehicles)
+        #print(min_vehicles)
         return max(1, min_vehicles)
 
     def initialize_fleet(self, min_vehicles: int) -> None:
@@ -217,7 +217,7 @@ class GreedyEVRPSolver:
             route_with_charging = self.insert_charging_stations(route, load, vehicle_type)
             
             # Calculate route metrics
-            distance, energy, time, battery_levels = self.calculate_route_metrics(
+            distance, energy, time, battery_levels= self.calculate_route_metrics(
                 route_with_charging, load, vehicle_type)
             
             # Update solution
@@ -367,7 +367,6 @@ class GreedyEVRPSolver:
         current_load = load
         current_battery = self.ev_config.initial_charging
         battery_levels = [(route[0], current_battery)]
-        
         for i in range(len(route) - 1):
             from_loc = route[i]
             to_loc = route[i + 1]
@@ -392,9 +391,8 @@ class GreedyEVRPSolver:
                 current_load -= self.instance.customer_items_weights[to_loc-1]
             
             battery_levels.append((to_loc, current_battery))
-        
         return total_distance, total_energy, total_time, battery_levels
-
+    
     def calculate_energy_consumption(self, distance: float, load: float, 
                                   vehicle_type: str) -> float:
         """Calculate energy consumption for a given distance and load"""
@@ -501,6 +499,10 @@ def process_single_instance(toml_path: str) -> Dict[str, Any]:
         total_distance = sum(solution.route_distances)
         total_energy = sum(solution.route_energies)
         total_time = sum(solution.delivery_times)
+        max_time = max(solution.delivery_times)
+        print(solution.delivery_times)
+        print(max_time)
+
         
         # Count vehicle types
         vehicle_counts = {}
@@ -521,6 +523,7 @@ def process_single_instance(toml_path: str) -> Dict[str, Any]:
             'total_distance': total_distance,
             'total_energy': total_energy,
             'total_time': total_time,
+            'max_time': max_time,
             'num_routes': len(solution.routes),
             'vehicle_distribution': vehicle_counts,
             'charging_stops': charging_stops,
@@ -602,7 +605,8 @@ def run_parallel_experiments(
                 'total_time': r['total_time'],
                 'num_vehicles': r['num_routes'],
                 'charging_stops': r['charging_stops'],
-                'computation_time': r['computation_time']
+                'computation_time': r['computation_time'],
+                'max_time': r['max_time']
             })
     
     summary_df = pd.DataFrame(summary_data)

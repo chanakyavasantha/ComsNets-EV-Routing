@@ -91,8 +91,9 @@ route = [0, 2, -1, 4, 0]
 PROCEDURE ModifiedGreedyEVRP_Solve:
     1. Calculate Initial Fleet Size
         total_demand ← Sum of all customer demands
-        unit_fleet_capacity ← (700 + 600 + 500)  // Sum of one of each vehicle type
-        min_vehicles_needed ← Ceiling(total_demand / (0.25 * unit_fleet_capacity))
+        unit_fleet_capacity ← (800+ 700 + 600 + 500)  // Sum of one of each vehicle type
+        min_vehicles_needed ← Ceiling(total_demand / (unit_fleet_capacity))
+        # This Represents the minimum vehicles required for each kind.
         
     2. Initialize Fleet Management
         fleet ← Initialize_Fleet(min_vehicles_needed)  // Starts with min_vehicles_needed of each type
@@ -101,7 +102,7 @@ PROCEDURE ModifiedGreedyEVRP_Solve:
         unserved_customers ← all_customers
         solution ← empty_solution
         available_vehicles ← Generate_Vehicle_Sequence(fleet)
-        // Available vehicles will be in order: [large, large, ..., medium, medium, ..., small, small, ...]
+        // Available vehicles will be in order: [xlarge, xlarge, ..., large, large, ..., medium, medium, ..., small, small, ...]
         
     4. Main Routing Loop
         current_vehicle_index ← 0
@@ -129,25 +130,18 @@ Initial State:
 - Total Demand: 360kg
 - Unit Fleet Capacity (1 of each): 1800kg
 - Min Vehicles Calculation:
-  360 ≤ 0.25 * n * 1800
-  360 ≤ 450n
-  n ≥ 0.8
-  min_vehicles_needed = 1 (ceiling)
+  360 ≤ n * 1800
+  n ≥ 0.2
+  min_vehicles_needed = 1 (ceiling) # That Means we have 1 xlarge, 1 large, 1 medium, 1 small in the inventory.
 
 Initial Fleet (1 of each type):
+- 1 xlarge (800kg)
 - 1 large (700kg)
 - 1 medium (600kg)
 - 1 small (500kg)
 
 Vehicle Assignment Sequence:
-1. First Route: Large Vehicle (700kg)
-   - Serves: [2, 4, 3] (175kg total)
-   
-2. Second Route: Medium Vehicle (600kg)
-   - Serves: [1] (90kg)
-   
-3. Third Route: Small Vehicle (500kg)
-   - Serves: [5] (95kg)
+1. Xlarge Vehicle will be serving all the vehicles.
 
 All customers served with initial fleet ✓
 ```
@@ -156,12 +150,13 @@ All customers served with initial fleet ✓
 ## Section 2. Fleet Management
 ```
 PROCEDURE Calculate_Min_Vehicles_Needed(total_demand):
-    unit_fleet_capacity ← 700 + 600 + 500  // Sum of one of each vehicle type
-    min_vehicles ← Ceiling(total_demand / (0.25 * unit_fleet_capacity))
+    unit_fleet_capacity ← 800 + 700 + 600 + 500  // Sum of one of each vehicle type
+    min_vehicles ← Ceiling(total_demand / (unit_fleet_capacity))
     Return min_vehicles
 
 PROCEDURE Initialize_Fleet(min_vehicles_needed):
     fleet ← {
+        'xlarge': min_vehicles_needed,
         'large': min_vehicles_needed,
         'medium': min_vehicles_needed,
         'small': min_vehicles_needed
@@ -170,7 +165,7 @@ PROCEDURE Initialize_Fleet(min_vehicles_needed):
 
 PROCEDURE Generate_Vehicle_Sequence(fleet):
     sequence ← []
-    FOR vehicle_type in ['large', 'medium', 'small']:
+    FOR vehicle_type in ['xlarge','large', 'medium', 'small']:
         FOR i in range(fleet[vehicle_type]):
             Add vehicle_type to sequence
     Return sequence
@@ -245,10 +240,7 @@ PROCEDURE Find_Best_Next_Customer:
         // Calculate distances
         distance_to_customer ← Calculate_Distance(current_location, customer)
         distance_to_depot ← Calculate_Distance(current_location, depot)
-        
-        // Skip if customer is farther than depot
-        IF distance_to_customer > distance_to_depot:
-            CONTINUE
+
             
         IF Is_Feasible(customer, current_load, current_battery):
             IF distance_to_customer < min_distance:

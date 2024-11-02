@@ -7,46 +7,13 @@
     "total_distance": 348.39037209841507,
     "total_energy": 97.01318595537073,
     "total_time": 16.20834215666388,
+    "max_time": 16.20834215666388,
     "num_routes": 1,
     "vehicle_distribution": {
       "xlarge": 1
     },
     "charging_stops": 1,
-    "computation_time": 0.0003299713134765625,
-    "success": true,
-    "error": null
-  },
-  {
-    "instance_id": "c10_9",
-    "num_customers": 10,
-    "num_charging_stations": 10,
-    "total_delivery_weight": 785,
-    "total_distance": 407.846585508681,
-    "total_energy": 111.82679720302517,
-    "total_time": 18.586590693074513,
-    "num_routes": 1,
-    "vehicle_distribution": {
-      "xlarge": 1
-    },
-    "charging_stops": 1,
-    "computation_time": 0.0003490447998046875,
-    "success": true,
-    "error": null
-  },
-  {
-    "instance_id": "c10_8",
-    "num_customers": 10,
-    "num_charging_stations": 10,
-    "total_delivery_weight": 775,
-    "total_distance": 285.4568515263747,
-    "total_energy": 80.14438102917872,
-    "total_time": 13.69100133378226,
-    "num_routes": 1,
-    "vehicle_distribution": {
-      "xlarge": 1
-    },
-    "charging_stops": 1,
-    "computation_time": 0.00021886825561523438,
+    "computation_time": 0.00027108192443847656,
     "success": true,
     "error": null
   },
@@ -58,12 +25,49 @@
     "total_distance": 332.7520372072475,
     "total_energy": 91.17904972955276,
     "total_time": 15.582808761017175,
+    "max_time": 15.582808761017175,
     "num_routes": 1,
     "vehicle_distribution": {
       "xlarge": 1
     },
     "charging_stops": 1,
-    "computation_time": 0.0002620220184326172,
+    "computation_time": 0.00025200843811035156,
+    "success": true,
+    "error": null
+  },
+  {
+    "instance_id": "c10_9",
+    "num_customers": 10,
+    "num_charging_stations": 10,
+    "total_delivery_weight": 785,
+    "total_distance": 407.846585508681,
+    "total_energy": 111.82679720302517,
+    "total_time": 18.586590693074513,
+    "max_time": 18.586590693074513,
+    "num_routes": 1,
+    "vehicle_distribution": {
+      "xlarge": 1
+    },
+    "charging_stops": 1,
+    "computation_time": 0.0003459453582763672,
+    "success": true,
+    "error": null
+  },
+  {
+    "instance_id": "c10_8",
+    "num_customers": 10,
+    "num_charging_stations": 10,
+    "total_delivery_weight": 775,
+    "total_distance": 285.4568515263747,
+    "total_energy": 80.14438102917872,
+    "total_time": 13.69100133378226,
+    "max_time": 13.69100133378226,
+    "num_routes": 1,
+    "vehicle_distribution": {
+      "xlarge": 1
+    },
+    "charging_stops": 1,
+    "computation_time": 0.00022077560424804688,
     "success": true,
     "error": null
   },
@@ -75,12 +79,13 @@
     "total_distance": 284.2636097642995,
     "total_energy": 78.49578406227653,
     "total_time": 13.643271663299254,
+    "max_time": 13.643271663299254,
     "num_routes": 1,
     "vehicle_distribution": {
       "xlarge": 1
     },
     "charging_stops": 1,
-    "computation_time": 0.0002760887145996094,
+    "computation_time": 0.00018596649169921875,
     "success": true,
     "error": null
   },
@@ -92,12 +97,13 @@
     "total_distance": 348.68125578372053,
     "total_energy": 96.03531878806152,
     "total_time": 16.219977504076095,
+    "max_time": 16.219977504076095,
     "num_routes": 1,
     "vehicle_distribution": {
       "xlarge": 1
     },
     "charging_stops": 1,
-    "computation_time": 0.00026702880859375,
+    "computation_time": 0.00019502639770507812,
     "success": true,
     "error": null
   },
@@ -109,29 +115,13 @@
     "total_distance": 369.8323166653168,
     "total_energy": 101.28618620986272,
     "total_time": 17.066019939339945,
+    "max_time": 17.066019939339945,
     "num_routes": 1,
     "vehicle_distribution": {
       "xlarge": 1
     },
     "charging_stops": 1,
-    "computation_time": 0.0002110004425048828,
-    "success": true,
-    "error": null
-  },
-  {
-    "instance_id": "c10_3",
-    "num_customers": 10,
-    "num_charging_stations": 10,
-    "total_delivery_weight": 740,
-    "total_distance": 379.88637658527637,
-    "total_energy": 104.87736284964,
-    "total_time": 19.740909608865604,
-    "num_routes": 1,
-    "vehicle_distribution": {
-      "xlarge": 1
-    },
-    "charging_stops": 2,
-    "computation_time": 0.00024008750915527344,
+    "computation_time": 0.00018095970153808594,
     "success": true,
     "error": null
   },
@@ -143,12 +133,31 @@
     "total_distance": 334.72404510386013,
     "total_energy": 92.49461801720574,
     "total_time": 15.661689076881679,
+    "max_time": 15.661689076881679,
     "num_routes": 1,
     "vehicle_distribution": {
       "xlarge": 1
     },
     "charging_stops": 1,
-    "computation_time": 0.00019788742065429688,
+    "computation_time": 0.0010228157043457031,
+    "success": true,
+    "error": null
+  },
+  {
+    "instance_id": "c10_3",
+    "num_customers": 10,
+    "num_charging_stations": 10,
+    "total_delivery_weight": 740,
+    "total_distance": 379.88637658527637,
+    "total_energy": 104.87736284964,
+    "total_time": 19.740909608865604,
+    "max_time": 19.740909608865604,
+    "num_routes": 1,
+    "vehicle_distribution": {
+      "xlarge": 1
+    },
+    "charging_stops": 2,
+    "computation_time": 0.0002148151397705078,
     "success": true,
     "error": null
   },
@@ -160,29 +169,13 @@
     "total_distance": 269.95750548247076,
     "total_energy": 74.44545335507368,
     "total_time": 13.071027492026104,
+    "max_time": 13.071027492026104,
     "num_routes": 1,
     "vehicle_distribution": {
       "xlarge": 1
     },
     "charging_stops": 1,
-    "computation_time": 0.00019812583923339844,
-    "success": true,
-    "error": null
-  },
-  {
-    "instance_id": "c10_2",
-    "num_customers": 10,
-    "num_charging_stations": 10,
-    "total_delivery_weight": 705,
-    "total_distance": 391.4487290671095,
-    "total_energy": 106.81275709138285,
-    "total_time": 17.930676435411655,
-    "num_routes": 1,
-    "vehicle_distribution": {
-      "xlarge": 1
-    },
-    "charging_stops": 1,
-    "computation_time": 0.00021028518676757812,
+    "computation_time": 0.0002319812774658203,
     "success": true,
     "error": null
   },
@@ -194,29 +187,31 @@
     "total_distance": 355.98450545712143,
     "total_energy": 98.8794921077909,
     "total_time": 16.512107491012127,
+    "max_time": 16.512107491012127,
     "num_routes": 1,
     "vehicle_distribution": {
       "xlarge": 1
     },
     "charging_stops": 1,
-    "computation_time": 0.0002067089080810547,
+    "computation_time": 0.0003008842468261719,
     "success": true,
     "error": null
   },
   {
-    "instance_id": "c10_16",
+    "instance_id": "c10_2",
     "num_customers": 10,
     "num_charging_stations": 10,
-    "total_delivery_weight": 640,
-    "total_distance": 317.7914879820017,
-    "total_energy": 87.10547721056969,
-    "total_time": 14.98438679200734,
+    "total_delivery_weight": 705,
+    "total_distance": 391.4487290671095,
+    "total_energy": 106.81275709138285,
+    "total_time": 17.930676435411655,
+    "max_time": 17.930676435411655,
     "num_routes": 1,
     "vehicle_distribution": {
       "xlarge": 1
     },
     "charging_stops": 1,
-    "computation_time": 0.00020623207092285156,
+    "computation_time": 0.00037097930908203125,
     "success": true,
     "error": null
   },
@@ -228,29 +223,13 @@
     "total_distance": 364.4306498219601,
     "total_energy": 100.3407098506268,
     "total_time": 16.84995326560568,
+    "max_time": 16.84995326560568,
     "num_routes": 1,
     "vehicle_distribution": {
       "xlarge": 1
     },
     "charging_stops": 1,
-    "computation_time": 0.0001919269561767578,
-    "success": true,
-    "error": null
-  },
-  {
-    "instance_id": "c10_7",
-    "num_customers": 10,
-    "num_charging_stations": 10,
-    "total_delivery_weight": 785,
-    "total_distance": 356.1062222650665,
-    "total_energy": 97.9732802267131,
-    "total_time": 16.516976163329932,
-    "num_routes": 1,
-    "vehicle_distribution": {
-      "xlarge": 1
-    },
-    "charging_stops": 1,
-    "computation_time": 0.00019097328186035156,
+    "computation_time": 0.000240325927734375,
     "success": true,
     "error": null
   },
@@ -262,12 +241,13 @@
     "total_distance": 346.09930644939556,
     "total_energy": 94.30548501044419,
     "total_time": 16.116699530703098,
+    "max_time": 16.116699530703098,
     "num_routes": 1,
     "vehicle_distribution": {
       "xlarge": 1
     },
     "charging_stops": 1,
-    "computation_time": 0.0002079010009765625,
+    "computation_time": 0.0002110004425048828,
     "success": true,
     "error": null
   },
@@ -279,29 +259,49 @@
     "total_distance": 371.5494715156403,
     "total_energy": 102.64391793689356,
     "total_time": 17.134706133352886,
+    "max_time": 17.134706133352886,
     "num_routes": 1,
     "vehicle_distribution": {
       "xlarge": 1
     },
     "charging_stops": 1,
-    "computation_time": 0.00021314620971679688,
+    "computation_time": 0.0002720355987548828,
     "success": true,
     "error": null
   },
   {
-    "instance_id": "c10_11",
+    "instance_id": "c10_16",
     "num_customers": 10,
     "num_charging_stations": 10,
-    "total_delivery_weight": 715,
-    "total_distance": 332.721476993459,
-    "total_energy": 92.18641398052051,
-    "total_time": 15.581586352465635,
+    "total_delivery_weight": 640,
+    "total_distance": 317.7914879820017,
+    "total_energy": 87.10547721056969,
+    "total_time": 14.98438679200734,
+    "max_time": 14.98438679200734,
     "num_routes": 1,
     "vehicle_distribution": {
       "xlarge": 1
     },
     "charging_stops": 1,
-    "computation_time": 0.00026702880859375,
+    "computation_time": 0.000247955322265625,
+    "success": true,
+    "error": null
+  },
+  {
+    "instance_id": "c10_7",
+    "num_customers": 10,
+    "num_charging_stations": 10,
+    "total_delivery_weight": 785,
+    "total_distance": 356.1062222650665,
+    "total_energy": 97.9732802267131,
+    "total_time": 16.516976163329932,
+    "max_time": 16.516976163329932,
+    "num_routes": 1,
+    "vehicle_distribution": {
+      "xlarge": 1
+    },
+    "charging_stops": 1,
+    "computation_time": 0.0002219676971435547,
     "success": true,
     "error": null
   },
@@ -313,12 +313,31 @@
     "total_distance": 383.5714977735849,
     "total_energy": 104.52966104164668,
     "total_time": 17.61558718367067,
+    "max_time": 17.61558718367067,
     "num_routes": 1,
     "vehicle_distribution": {
       "xlarge": 1
     },
     "charging_stops": 1,
-    "computation_time": 0.00030684471130371094,
+    "computation_time": 0.0002601146697998047,
+    "success": true,
+    "error": null
+  },
+  {
+    "instance_id": "c10_11",
+    "num_customers": 10,
+    "num_charging_stations": 10,
+    "total_delivery_weight": 715,
+    "total_distance": 332.721476993459,
+    "total_energy": 92.18641398052051,
+    "total_time": 15.581586352465635,
+    "max_time": 15.581586352465635,
+    "num_routes": 1,
+    "vehicle_distribution": {
+      "xlarge": 1
+    },
+    "charging_stops": 1,
+    "computation_time": 0.00066375732421875,
     "success": true,
     "error": null
   },
@@ -330,12 +349,13 @@
     "total_distance": 397.12675027074874,
     "total_energy": 109.49163256349914,
     "total_time": 18.157797283557223,
+    "max_time": 18.157797283557223,
     "num_routes": 1,
     "vehicle_distribution": {
       "xlarge": 1
     },
     "charging_stops": 1,
-    "computation_time": 0.0003159046173095703,
+    "computation_time": 0.00023293495178222656,
     "success": true,
     "error": null
   },
@@ -347,13 +367,14 @@
     "total_distance": 581.9925048726682,
     "total_energy": 156.44484081773462,
     "total_time": 27.597882013088544,
+    "max_time": 14.213823551915294,
     "num_routes": 2,
     "vehicle_distribution": {
       "xlarge": 1,
       "large": 1
     },
     "charging_stops": 2,
-    "computation_time": 0.0004799365997314453,
+    "computation_time": 0.0005979537963867188,
     "success": true,
     "error": null
   },
@@ -365,6 +386,7 @@
     "total_distance": 619.6629604952601,
     "total_energy": 164.56229230405938,
     "total_time": 27.059245692537676,
+    "max_time": 14.659851741289563,
     "num_routes": 3,
     "vehicle_distribution": {
       "xlarge": 1,
@@ -372,26 +394,7 @@
       "medium": 1
     },
     "charging_stops": 1,
-    "computation_time": 0.0006608963012695312,
-    "success": true,
-    "error": null
-  },
-  {
-    "instance_id": "c20_20",
-    "num_customers": 20,
-    "num_charging_stations": 10,
-    "total_delivery_weight": 1485,
-    "total_distance": 604.6851467552818,
-    "total_energy": 159.7199159147799,
-    "total_time": 28.50558768839309,
-    "num_routes": 3,
-    "vehicle_distribution": {
-      "xlarge": 1,
-      "large": 1,
-      "medium": 1
-    },
-    "charging_stops": 2,
-    "computation_time": 0.0004410743713378906,
+    "computation_time": 0.0007863044738769531,
     "success": true,
     "error": null
   },
@@ -403,31 +406,14 @@
     "total_distance": 528.5150665043243,
     "total_energy": 142.77606319547965,
     "total_time": 25.458784478354787,
+    "max_time": 13.467106490687335,
     "num_routes": 2,
     "vehicle_distribution": {
       "xlarge": 1,
       "large": 1
     },
     "charging_stops": 2,
-    "computation_time": 0.0005180835723876953,
-    "success": true,
-    "error": null
-  },
-  {
-    "instance_id": "c20_11",
-    "num_customers": 20,
-    "num_charging_stations": 10,
-    "total_delivery_weight": 1480,
-    "total_distance": 588.1649082172378,
-    "total_energy": 158.47647263057976,
-    "total_time": 27.844778146871334,
-    "num_routes": 2,
-    "vehicle_distribution": {
-      "xlarge": 1,
-      "large": 1
-    },
-    "charging_stops": 2,
-    "computation_time": 0.0008270740509033203,
+    "computation_time": 0.0005340576171875,
     "success": true,
     "error": null
   },
@@ -439,6 +425,7 @@
     "total_distance": 628.6371802937767,
     "total_energy": 165.94936538668284,
     "total_time": 27.19094175720561,
+    "max_time": 15.17171209470936,
     "num_routes": 3,
     "vehicle_distribution": {
       "xlarge": 1,
@@ -446,7 +433,27 @@
       "medium": 1
     },
     "charging_stops": 1,
-    "computation_time": 0.00045609474182128906,
+    "computation_time": 0.0005931854248046875,
+    "success": true,
+    "error": null
+  },
+  {
+    "instance_id": "c20_20",
+    "num_customers": 20,
+    "num_charging_stations": 10,
+    "total_delivery_weight": 1485,
+    "total_distance": 604.6851467552818,
+    "total_energy": 159.7199159147799,
+    "total_time": 28.50558768839309,
+    "max_time": 12.153871031534473,
+    "num_routes": 3,
+    "vehicle_distribution": {
+      "xlarge": 1,
+      "large": 1,
+      "medium": 1
+    },
+    "charging_stops": 2,
+    "computation_time": 0.000576019287109375,
     "success": true,
     "error": null
   },
@@ -458,6 +465,7 @@
     "total_distance": 651.1956554990122,
     "total_energy": 173.15716709090017,
     "total_time": 30.366008038142304,
+    "max_time": 14.11354299222935,
     "num_routes": 3,
     "vehicle_distribution": {
       "xlarge": 1,
@@ -465,44 +473,7 @@
       "medium": 1
     },
     "charging_stops": 2,
-    "computation_time": 0.0013499259948730469,
-    "success": true,
-    "error": null
-  },
-  {
-    "instance_id": "c20_10",
-    "num_customers": 20,
-    "num_charging_stations": 10,
-    "total_delivery_weight": 1445,
-    "total_distance": 503.88967296157534,
-    "total_energy": 134.94276835631268,
-    "total_time": 22.201041463917562,
-    "num_routes": 2,
-    "vehicle_distribution": {
-      "xlarge": 1,
-      "large": 1
-    },
-    "charging_stops": 1,
-    "computation_time": 0.00044989585876464844,
-    "success": true,
-    "error": null
-  },
-  {
-    "instance_id": "c20_4",
-    "num_customers": 20,
-    "num_charging_stations": 10,
-    "total_delivery_weight": 1620,
-    "total_distance": 654.2981128531319,
-    "total_energy": 172.5085637573483,
-    "total_time": 30.490106332307096,
-    "num_routes": 3,
-    "vehicle_distribution": {
-      "xlarge": 1,
-      "large": 1,
-      "medium": 1
-    },
-    "charging_stops": 2,
-    "computation_time": 0.00045490264892578125,
+    "computation_time": 0.0010139942169189453,
     "success": true,
     "error": null
   },
@@ -514,31 +485,72 @@
     "total_distance": 580.082241260281,
     "total_energy": 155.7092035787374,
     "total_time": 27.521471468593056,
+    "max_time": 14.775828738844245,
     "num_routes": 2,
     "vehicle_distribution": {
       "xlarge": 1,
       "large": 1
     },
     "charging_stops": 2,
-    "computation_time": 0.00045299530029296875,
+    "computation_time": 0.0005028247833251953,
     "success": true,
     "error": null
   },
   {
-    "instance_id": "c20_7",
+    "instance_id": "c20_4",
     "num_customers": 20,
     "num_charging_stations": 10,
-    "total_delivery_weight": 1490,
-    "total_distance": 554.9333170432051,
-    "total_energy": 148.5561906357056,
-    "total_time": 26.51551449991002,
+    "total_delivery_weight": 1620,
+    "total_distance": 654.2981128531319,
+    "total_energy": 172.5085637573483,
+    "total_time": 30.490106332307096,
+    "max_time": 13.989935338723253,
+    "num_routes": 3,
+    "vehicle_distribution": {
+      "xlarge": 1,
+      "large": 1,
+      "medium": 1
+    },
+    "charging_stops": 2,
+    "computation_time": 0.001172780990600586,
+    "success": true,
+    "error": null
+  },
+  {
+    "instance_id": "c20_10",
+    "num_customers": 20,
+    "num_charging_stations": 10,
+    "total_delivery_weight": 1445,
+    "total_distance": 503.88967296157534,
+    "total_energy": 134.94276835631268,
+    "total_time": 22.201041463917562,
+    "max_time": 13.709583036134154,
+    "num_routes": 2,
+    "vehicle_distribution": {
+      "xlarge": 1,
+      "large": 1
+    },
+    "charging_stops": 1,
+    "computation_time": 0.0004937648773193359,
+    "success": true,
+    "error": null
+  },
+  {
+    "instance_id": "c20_11",
+    "num_customers": 20,
+    "num_charging_stations": 10,
+    "total_delivery_weight": 1480,
+    "total_distance": 588.1649082172378,
+    "total_energy": 158.47647263057976,
+    "total_time": 27.844778146871334,
+    "max_time": 15.262911807811939,
     "num_routes": 2,
     "vehicle_distribution": {
       "xlarge": 1,
       "large": 1
     },
     "charging_stops": 2,
-    "computation_time": 0.0004260540008544922,
+    "computation_time": 0.0014891624450683594,
     "success": true,
     "error": null
   },
@@ -550,6 +562,7 @@
     "total_distance": 585.1210938943481,
     "total_energy": 153.73359269140727,
     "total_time": 25.450298301228468,
+    "max_time": 12.343749919429486,
     "num_routes": 3,
     "vehicle_distribution": {
       "xlarge": 1,
@@ -557,25 +570,7 @@
       "medium": 1
     },
     "charging_stops": 1,
-    "computation_time": 0.00044083595275878906,
-    "success": true,
-    "error": null
-  },
-  {
-    "instance_id": "c20_12",
-    "num_customers": 20,
-    "num_charging_stations": 10,
-    "total_delivery_weight": 1425,
-    "total_distance": 575.0187203381648,
-    "total_energy": 154.50177899598626,
-    "total_time": 27.318930631708415,
-    "num_routes": 2,
-    "vehicle_distribution": {
-      "xlarge": 1,
-      "large": 1
-    },
-    "charging_stops": 2,
-    "computation_time": 0.00044798851013183594,
+    "computation_time": 0.0005130767822265625,
     "success": true,
     "error": null
   },
@@ -587,6 +582,7 @@
     "total_distance": 606.0086349529255,
     "total_energy": 161.01348388499522,
     "total_time": 26.5130726708443,
+    "max_time": 14.919794501384784,
     "num_routes": 3,
     "vehicle_distribution": {
       "xlarge": 1,
@@ -594,7 +590,45 @@
       "medium": 1
     },
     "charging_stops": 1,
-    "computation_time": 0.0010190010070800781,
+    "computation_time": 0.0005559921264648438,
+    "success": true,
+    "error": null
+  },
+  {
+    "instance_id": "c20_12",
+    "num_customers": 20,
+    "num_charging_stations": 10,
+    "total_delivery_weight": 1425,
+    "total_distance": 575.0187203381648,
+    "total_energy": 154.50177899598626,
+    "total_time": 27.318930631708415,
+    "max_time": 14.496598590601788,
+    "num_routes": 2,
+    "vehicle_distribution": {
+      "xlarge": 1,
+      "large": 1
+    },
+    "charging_stops": 2,
+    "computation_time": 0.0005671977996826172,
+    "success": true,
+    "error": null
+  },
+  {
+    "instance_id": "c20_7",
+    "num_customers": 20,
+    "num_charging_stations": 10,
+    "total_delivery_weight": 1490,
+    "total_distance": 554.9333170432051,
+    "total_energy": 148.5561906357056,
+    "total_time": 26.51551449991002,
+    "max_time": 15.05188544933146,
+    "num_routes": 2,
+    "vehicle_distribution": {
+      "xlarge": 1,
+      "large": 1
+    },
+    "charging_stops": 2,
+    "computation_time": 0.0005357265472412109,
     "success": true,
     "error": null
   },
@@ -606,6 +640,7 @@
     "total_distance": 532.4897352050826,
     "total_energy": 140.77494806279373,
     "total_time": 23.345043953657854,
+    "max_time": 12.152491682787632,
     "num_routes": 3,
     "vehicle_distribution": {
       "xlarge": 1,
@@ -613,26 +648,7 @@
       "medium": 1
     },
     "charging_stops": 1,
-    "computation_time": 0.0007719993591308594,
-    "success": true,
-    "error": null
-  },
-  {
-    "instance_id": "c20_1",
-    "num_customers": 20,
-    "num_charging_stations": 10,
-    "total_delivery_weight": 1585,
-    "total_distance": 682.6953645784603,
-    "total_energy": 178.66709612129898,
-    "total_time": 29.353269128592956,
-    "num_routes": 3,
-    "vehicle_distribution": {
-      "xlarge": 1,
-      "large": 1,
-      "medium": 1
-    },
-    "charging_stops": 1,
-    "computation_time": 0.0006039142608642578,
+    "computation_time": 0.0005321502685546875,
     "success": true,
     "error": null
   },
@@ -644,6 +660,7 @@
     "total_distance": 579.9932956672502,
     "total_energy": 152.5908047605357,
     "total_time": 25.47245909941728,
+    "max_time": 11.871029188641202,
     "num_routes": 3,
     "vehicle_distribution": {
       "xlarge": 1,
@@ -651,7 +668,27 @@
       "medium": 1
     },
     "charging_stops": 1,
-    "computation_time": 0.00047206878662109375,
+    "computation_time": 0.0006699562072753906,
+    "success": true,
+    "error": null
+  },
+  {
+    "instance_id": "c20_1",
+    "num_customers": 20,
+    "num_charging_stations": 10,
+    "total_delivery_weight": 1585,
+    "total_distance": 682.6953645784603,
+    "total_energy": 178.66709612129898,
+    "total_time": 29.353269128592956,
+    "max_time": 12.77368164459206,
+    "num_routes": 3,
+    "vehicle_distribution": {
+      "xlarge": 1,
+      "large": 1,
+      "medium": 1
+    },
+    "charging_stops": 1,
+    "computation_time": 0.0005791187286376953,
     "success": true,
     "error": null
   },
@@ -663,13 +700,14 @@
     "total_distance": 553.4800259514884,
     "total_energy": 148.18366740571832,
     "total_time": 24.184655583514086,
+    "max_time": 15.7115544236962,
     "num_routes": 2,
     "vehicle_distribution": {
       "xlarge": 1,
       "large": 1
     },
     "charging_stops": 1,
-    "computation_time": 0.0005168914794921875,
+    "computation_time": 0.00055694580078125,
     "success": true,
     "error": null
   },
@@ -681,13 +719,14 @@
     "total_distance": 585.2927917294328,
     "total_energy": 157.44718198623332,
     "total_time": 27.72989348735913,
+    "max_time": 14.184036473041854,
     "num_routes": 2,
     "vehicle_distribution": {
       "xlarge": 1,
       "large": 1
     },
     "charging_stops": 2,
-    "computation_time": 0.0005209445953369141,
+    "computation_time": 0.00048828125,
     "success": true,
     "error": null
   },
@@ -699,32 +738,14 @@
     "total_distance": 510.5024471721331,
     "total_energy": 138.3904115191748,
     "total_time": 24.73827970506714,
+    "max_time": 13.250850012918338,
     "num_routes": 2,
     "vehicle_distribution": {
       "xlarge": 1,
       "large": 1
     },
     "charging_stops": 2,
-    "computation_time": 0.0006170272827148438,
-    "success": true,
-    "error": null
-  },
-  {
-    "instance_id": "c50_17",
-    "num_customers": 50,
-    "num_charging_stations": 10,
-    "total_delivery_weight": 3770,
-    "total_distance": 1226.077629471654,
-    "total_energy": 324.0474003484914,
-    "total_time": 53.36128699704798,
-    "num_routes": 6,
-    "vehicle_distribution": {
-      "xlarge": 2,
-      "large": 2,
-      "medium": 2
-    },
-    "charging_stops": 2,
-    "computation_time": 0.0016360282897949219,
+    "computation_time": 0.0005791187286376953,
     "success": true,
     "error": null
   },
@@ -736,6 +757,7 @@
     "total_distance": 1147.7060842589021,
     "total_energy": 300.03010970923094,
     "total_time": 47.72642518853792,
+    "max_time": 11.84726666385772,
     "num_routes": 6,
     "vehicle_distribution": {
       "xlarge": 2,
@@ -743,26 +765,7 @@
       "medium": 2
     },
     "charging_stops": 1,
-    "computation_time": 0.0014829635620117188,
-    "success": true,
-    "error": null
-  },
-  {
-    "instance_id": "c50_10",
-    "num_customers": 50,
-    "num_charging_stations": 10,
-    "total_delivery_weight": 3730,
-    "total_distance": 1069.1673737689077,
-    "total_energy": 281.19723811958727,
-    "total_time": 42.76669495075631,
-    "num_routes": 6,
-    "vehicle_distribution": {
-      "xlarge": 2,
-      "large": 2,
-      "medium": 2
-    },
-    "charging_stops": 0,
-    "computation_time": 0.0016090869903564453,
+    "computation_time": 0.001667022705078125,
     "success": true,
     "error": null
   },
@@ -774,6 +777,7 @@
     "total_distance": 1118.9587451714683,
     "total_energy": 294.02305672084947,
     "total_time": 47.03107707958601,
+    "max_time": 12.380157126569316,
     "num_routes": 6,
     "vehicle_distribution": {
       "xlarge": 2,
@@ -781,83 +785,27 @@
       "medium": 2
     },
     "charging_stops": 1,
-    "computation_time": 0.0023050308227539062,
+    "computation_time": 0.0018198490142822266,
     "success": true,
     "error": null
   },
   {
-    "instance_id": "c50_3",
+    "instance_id": "c50_10",
     "num_customers": 50,
     "num_charging_stations": 10,
-    "total_delivery_weight": 3740,
-    "total_distance": 1130.2168386147043,
-    "total_energy": 296.41182125385535,
-    "total_time": 47.026855362769986,
+    "total_delivery_weight": 3730,
+    "total_distance": 1069.1673737689077,
+    "total_energy": 281.19723811958727,
+    "total_time": 42.76669495075631,
+    "max_time": 8.006327356016008,
     "num_routes": 6,
     "vehicle_distribution": {
       "xlarge": 2,
       "large": 2,
       "medium": 2
     },
-    "charging_stops": 1,
-    "computation_time": 0.0019259452819824219,
-    "success": true,
-    "error": null
-  },
-  {
-    "instance_id": "c50_2",
-    "num_customers": 50,
-    "num_charging_stations": 10,
-    "total_delivery_weight": 3625,
-    "total_distance": 1146.4282805320356,
-    "total_energy": 302.8092367311831,
-    "total_time": 47.90258576673597,
-    "num_routes": 6,
-    "vehicle_distribution": {
-      "xlarge": 2,
-      "large": 2,
-      "medium": 2
-    },
-    "charging_stops": 1,
-    "computation_time": 0.0015709400177001953,
-    "success": true,
-    "error": null
-  },
-  {
-    "instance_id": "c50_1",
-    "num_customers": 50,
-    "num_charging_stations": 10,
-    "total_delivery_weight": 3605,
-    "total_distance": 1096.4493449565853,
-    "total_energy": 288.81329742332423,
-    "total_time": 45.903428343717955,
-    "num_routes": 6,
-    "vehicle_distribution": {
-      "xlarge": 2,
-      "large": 2,
-      "medium": 2
-    },
-    "charging_stops": 1,
-    "computation_time": 0.0017240047454833984,
-    "success": true,
-    "error": null
-  },
-  {
-    "instance_id": "c50_6",
-    "num_customers": 50,
-    "num_charging_stations": 10,
-    "total_delivery_weight": 3905,
-    "total_distance": 1146.348144662654,
-    "total_energy": 301.7057730695273,
-    "total_time": 47.67210760468798,
-    "num_routes": 6,
-    "vehicle_distribution": {
-      "xlarge": 2,
-      "large": 2,
-      "medium": 2
-    },
-    "charging_stops": 1,
-    "computation_time": 0.002020120620727539,
+    "charging_stops": 0,
+    "computation_time": 0.001981973648071289,
     "success": true,
     "error": null
   },
@@ -869,6 +817,7 @@
     "total_distance": 1152.3926029181034,
     "total_energy": 304.4699255553503,
     "total_time": 48.14115866217868,
+    "max_time": 14.962061155012119,
     "num_routes": 6,
     "vehicle_distribution": {
       "xlarge": 2,
@@ -876,64 +825,7 @@
       "medium": 2
     },
     "charging_stops": 1,
-    "computation_time": 0.001508951187133789,
-    "success": true,
-    "error": null
-  },
-  {
-    "instance_id": "c50_14",
-    "num_customers": 50,
-    "num_charging_stations": 10,
-    "total_delivery_weight": 3575,
-    "total_distance": 1175.5406544343734,
-    "total_energy": 308.6970789828359,
-    "total_time": 48.83980799555675,
-    "num_routes": 6,
-    "vehicle_distribution": {
-      "xlarge": 2,
-      "large": 2,
-      "medium": 2
-    },
-    "charging_stops": 1,
-    "computation_time": 0.0015287399291992188,
-    "success": true,
-    "error": null
-  },
-  {
-    "instance_id": "c50_15",
-    "num_customers": 50,
-    "num_charging_stations": 10,
-    "total_delivery_weight": 3780,
-    "total_distance": 1235.391682296628,
-    "total_energy": 323.56981106591104,
-    "total_time": 51.23384911004695,
-    "num_routes": 6,
-    "vehicle_distribution": {
-      "xlarge": 2,
-      "large": 2,
-      "medium": 2
-    },
-    "charging_stops": 1,
-    "computation_time": 0.0016231536865234375,
-    "success": true,
-    "error": null
-  },
-  {
-    "instance_id": "c50_18",
-    "num_customers": 50,
-    "num_charging_stations": 10,
-    "total_delivery_weight": 3785,
-    "total_distance": 1244.208715833997,
-    "total_energy": 326.4756485480212,
-    "total_time": 53.63198499699625,
-    "num_routes": 6,
-    "vehicle_distribution": {
-      "xlarge": 2,
-      "large": 2,
-      "medium": 2
-    },
-    "charging_stops": 2,
-    "computation_time": 0.002140045166015625,
+    "computation_time": 0.0016090869903564453,
     "success": true,
     "error": null
   },
@@ -945,6 +837,7 @@
     "total_distance": 1236.0832274960082,
     "total_energy": 323.29829798687626,
     "total_time": 53.30696546347669,
+    "max_time": 14.433486735231817,
     "num_routes": 6,
     "vehicle_distribution": {
       "xlarge": 2,
@@ -952,37 +845,59 @@
       "medium": 2
     },
     "charging_stops": 2,
-    "computation_time": 0.0017397403717041016,
+    "computation_time": 0.0017480850219726562,
     "success": true,
     "error": null
   },
   {
-    "instance_id": "c50_12",
+    "instance_id": "c50_1",
     "num_customers": 50,
     "num_charging_stations": 10,
-    "total_delivery_weight": 3825,
-    "total_distance": 1209.918873872205,
-    "total_energy": 318.1548242878125,
-    "total_time": 52.26039131852457,
+    "total_delivery_weight": 3605,
+    "total_distance": 1096.4493449565853,
+    "total_energy": 288.81329742332423,
+    "total_time": 45.903428343717955,
+    "max_time": 12.324639384782621,
     "num_routes": 6,
     "vehicle_distribution": {
       "xlarge": 2,
       "large": 2,
       "medium": 2
     },
-    "charging_stops": 2,
-    "computation_time": 0.0038208961486816406,
+    "charging_stops": 1,
+    "computation_time": 0.001935720443725586,
     "success": true,
     "error": null
   },
   {
-    "instance_id": "c50_19",
+    "instance_id": "c50_6",
     "num_customers": 50,
     "num_charging_stations": 10,
-    "total_delivery_weight": 3675,
-    "total_distance": 1149.4967819877952,
-    "total_energy": 303.0225405479274,
-    "total_time": 50.29805309769364,
+    "total_delivery_weight": 3905,
+    "total_distance": 1146.348144662654,
+    "total_energy": 301.7057730695273,
+    "total_time": 47.67210760468798,
+    "max_time": 12.470675928136485,
+    "num_routes": 6,
+    "vehicle_distribution": {
+      "xlarge": 2,
+      "large": 2,
+      "medium": 2
+    },
+    "charging_stops": 1,
+    "computation_time": 0.0017981529235839844,
+    "success": true,
+    "error": null
+  },
+  {
+    "instance_id": "c50_17",
+    "num_customers": 50,
+    "num_charging_stations": 10,
+    "total_delivery_weight": 3770,
+    "total_distance": 1226.077629471654,
+    "total_energy": 324.0474003484914,
+    "total_time": 53.36128699704798,
+    "max_time": 13.257541962341922,
     "num_routes": 6,
     "vehicle_distribution": {
       "xlarge": 2,
@@ -990,7 +905,107 @@
       "medium": 2
     },
     "charging_stops": 2,
-    "computation_time": 0.0018150806427001953,
+    "computation_time": 0.0016398429870605469,
+    "success": true,
+    "error": null
+  },
+  {
+    "instance_id": "c50_18",
+    "num_customers": 50,
+    "num_charging_stations": 10,
+    "total_delivery_weight": 3785,
+    "total_distance": 1244.208715833997,
+    "total_energy": 326.4756485480212,
+    "total_time": 53.63198499699625,
+    "max_time": 15.372240037836075,
+    "num_routes": 6,
+    "vehicle_distribution": {
+      "xlarge": 2,
+      "large": 2,
+      "medium": 2
+    },
+    "charging_stops": 2,
+    "computation_time": 0.0015032291412353516,
+    "success": true,
+    "error": null
+  },
+  {
+    "instance_id": "c50_14",
+    "num_customers": 50,
+    "num_charging_stations": 10,
+    "total_delivery_weight": 3575,
+    "total_distance": 1175.5406544343734,
+    "total_energy": 308.6970789828359,
+    "total_time": 48.83980799555675,
+    "max_time": 12.887083193908436,
+    "num_routes": 6,
+    "vehicle_distribution": {
+      "xlarge": 2,
+      "large": 2,
+      "medium": 2
+    },
+    "charging_stops": 1,
+    "computation_time": 0.0022592544555664062,
+    "success": true,
+    "error": null
+  },
+  {
+    "instance_id": "c50_3",
+    "num_customers": 50,
+    "num_charging_stations": 10,
+    "total_delivery_weight": 3740,
+    "total_distance": 1130.2168386147043,
+    "total_energy": 296.41182125385535,
+    "total_time": 47.026855362769986,
+    "max_time": 14.127703729082086,
+    "num_routes": 6,
+    "vehicle_distribution": {
+      "xlarge": 2,
+      "large": 2,
+      "medium": 2
+    },
+    "charging_stops": 1,
+    "computation_time": 0.011324882507324219,
+    "success": true,
+    "error": null
+  },
+  {
+    "instance_id": "c50_2",
+    "num_customers": 50,
+    "num_charging_stations": 10,
+    "total_delivery_weight": 3625,
+    "total_distance": 1146.4282805320356,
+    "total_energy": 302.8092367311831,
+    "total_time": 47.90258576673597,
+    "max_time": 13.103712992714641,
+    "num_routes": 6,
+    "vehicle_distribution": {
+      "xlarge": 2,
+      "large": 2,
+      "medium": 2
+    },
+    "charging_stops": 1,
+    "computation_time": 0.0019419193267822266,
+    "success": true,
+    "error": null
+  },
+  {
+    "instance_id": "c50_15",
+    "num_customers": 50,
+    "num_charging_stations": 10,
+    "total_delivery_weight": 3780,
+    "total_distance": 1235.391682296628,
+    "total_energy": 323.56981106591104,
+    "total_time": 51.23384911004695,
+    "max_time": 12.817250031295083,
+    "num_routes": 6,
+    "vehicle_distribution": {
+      "xlarge": 2,
+      "large": 2,
+      "medium": 2
+    },
+    "charging_stops": 1,
+    "computation_time": 0.0019230842590332031,
     "success": true,
     "error": null
   },
@@ -1002,127 +1017,14 @@
     "total_distance": 943.3555393227093,
     "total_energy": 253.83774025513253,
     "total_time": 42.052403391090195,
+    "max_time": 14.557851235150629,
     "num_routes": 4,
     "vehicle_distribution": {
       "xlarge": 2,
       "large": 2
     },
     "charging_stops": 2,
-    "computation_time": 0.0011692047119140625,
-    "success": true,
-    "error": null
-  },
-  {
-    "instance_id": "c40_20",
-    "num_customers": 40,
-    "num_charging_stations": 10,
-    "total_delivery_weight": 3125,
-    "total_distance": 990.7484149409901,
-    "total_energy": 262.71418488026825,
-    "total_time": 41.675391143094146,
-    "num_routes": 5,
-    "vehicle_distribution": {
-      "xlarge": 2,
-      "large": 2,
-      "medium": 1
-    },
-    "charging_stops": 1,
-    "computation_time": 0.0011646747589111328,
-    "success": true,
-    "error": null
-  },
-  {
-    "instance_id": "c40_11",
-    "num_customers": 40,
-    "num_charging_stations": 10,
-    "total_delivery_weight": 2955,
-    "total_distance": 1036.0860698082788,
-    "total_energy": 277.08138677065733,
-    "total_time": 45.76162461051297,
-    "num_routes": 5,
-    "vehicle_distribution": {
-      "xlarge": 2,
-      "large": 2,
-      "medium": 1
-    },
-    "charging_stops": 2,
-    "computation_time": 0.0011801719665527344,
-    "success": true,
-    "error": null
-  },
-  {
-    "instance_id": "c40_16",
-    "num_customers": 40,
-    "num_charging_stations": 10,
-    "total_delivery_weight": 3045,
-    "total_distance": 1049.7216235597173,
-    "total_energy": 279.05791580631814,
-    "total_time": 44.03431948784323,
-    "num_routes": 5,
-    "vehicle_distribution": {
-      "xlarge": 2,
-      "large": 2,
-      "medium": 1
-    },
-    "charging_stops": 1,
-    "computation_time": 0.0011811256408691406,
-    "success": true,
-    "error": null
-  },
-  {
-    "instance_id": "c40_7",
-    "num_customers": 40,
-    "num_charging_stations": 10,
-    "total_delivery_weight": 3075,
-    "total_distance": 944.6369751066397,
-    "total_energy": 252.91952539385872,
-    "total_time": 40.05820627699286,
-    "num_routes": 5,
-    "vehicle_distribution": {
-      "xlarge": 2,
-      "large": 2,
-      "medium": 1
-    },
-    "charging_stops": 1,
-    "computation_time": 0.0022382736206054688,
-    "success": true,
-    "error": null
-  },
-  {
-    "instance_id": "c40_17",
-    "num_customers": 40,
-    "num_charging_stations": 10,
-    "total_delivery_weight": 2950,
-    "total_distance": 962.2155207356741,
-    "total_energy": 256.31964299476635,
-    "total_time": 42.57952992033606,
-    "num_routes": 5,
-    "vehicle_distribution": {
-      "xlarge": 2,
-      "large": 2,
-      "medium": 1
-    },
-    "charging_stops": 2,
-    "computation_time": 0.0010752677917480469,
-    "success": true,
-    "error": null
-  },
-  {
-    "instance_id": "c40_1",
-    "num_customers": 40,
-    "num_charging_stations": 10,
-    "total_delivery_weight": 3060,
-    "total_distance": 1018.5166649077995,
-    "total_energy": 269.82445144583784,
-    "total_time": 44.83157568722106,
-    "num_routes": 5,
-    "vehicle_distribution": {
-      "xlarge": 2,
-      "large": 2,
-      "medium": 1
-    },
-    "charging_stops": 2,
-    "computation_time": 0.0011420249938964844,
+    "computation_time": 0.001199960708618164,
     "success": true,
     "error": null
   },
@@ -1134,6 +1036,7 @@
     "total_distance": 950.0437027990766,
     "total_energy": 251.75755071412237,
     "total_time": 40.047202657417614,
+    "max_time": 11.890479501144059,
     "num_routes": 5,
     "vehicle_distribution": {
       "xlarge": 2,
@@ -1141,44 +1044,27 @@
       "medium": 1
     },
     "charging_stops": 1,
-    "computation_time": 0.001234292984008789,
+    "computation_time": 0.0011820793151855469,
     "success": true,
     "error": null
   },
   {
-    "instance_id": "c40_18",
+    "instance_id": "c40_11",
     "num_customers": 40,
     "num_charging_stations": 10,
-    "total_delivery_weight": 2840,
-    "total_distance": 946.3852052813388,
-    "total_energy": 255.1561019564002,
-    "total_time": 39.900862756708094,
-    "num_routes": 4,
-    "vehicle_distribution": {
-      "xlarge": 2,
-      "large": 2
-    },
-    "charging_stops": 1,
-    "computation_time": 0.0011749267578125,
-    "success": true,
-    "error": null
-  },
-  {
-    "instance_id": "c50_9",
-    "num_customers": 50,
-    "num_charging_stations": 10,
-    "total_delivery_weight": 3675,
-    "total_distance": 1030.1655648342376,
-    "total_energy": 271.5556148749354,
-    "total_time": 41.2066225933695,
-    "num_routes": 6,
+    "total_delivery_weight": 2955,
+    "total_distance": 1036.0860698082788,
+    "total_energy": 277.08138677065733,
+    "total_time": 45.76162461051297,
+    "max_time": 13.023732760855674,
+    "num_routes": 5,
     "vehicle_distribution": {
       "xlarge": 2,
       "large": 2,
-      "medium": 2
+      "medium": 1
     },
-    "charging_stops": 0,
-    "computation_time": 0.0015912055969238281,
+    "charging_stops": 2,
+    "computation_time": 0.0015017986297607422,
     "success": true,
     "error": null
   },
@@ -1190,6 +1076,7 @@
     "total_distance": 1372.5801235291208,
     "total_energy": 358.8484263356218,
     "total_time": 61.03956857752847,
+    "max_time": 15.315631427804519,
     "num_routes": 6,
     "vehicle_distribution": {
       "xlarge": 2,
@@ -1197,18 +1084,19 @@
       "medium": 2
     },
     "charging_stops": 3,
-    "computation_time": 0.0016639232635498047,
+    "computation_time": 0.0016887187957763672,
     "success": true,
     "error": null
   },
   {
-    "instance_id": "c50_4",
+    "instance_id": "c50_19",
     "num_customers": 50,
     "num_charging_stations": 10,
-    "total_delivery_weight": 3685,
-    "total_distance": 1331.1349328478382,
-    "total_energy": 346.6337441077555,
-    "total_time": 57.1090336775499,
+    "total_delivery_weight": 3675,
+    "total_distance": 1149.4967819877952,
+    "total_energy": 303.0225405479274,
+    "total_time": 50.29805309769364,
+    "max_time": 12.50542644393957,
     "num_routes": 6,
     "vehicle_distribution": {
       "xlarge": 2,
@@ -1216,45 +1104,7 @@
       "medium": 2
     },
     "charging_stops": 2,
-    "computation_time": 0.0017671585083007812,
-    "success": true,
-    "error": null
-  },
-  {
-    "instance_id": "c50_13",
-    "num_customers": 50,
-    "num_charging_stations": 10,
-    "total_delivery_weight": 3570,
-    "total_distance": 1193.624913264693,
-    "total_energy": 314.60181680214555,
-    "total_time": 51.83590562149682,
-    "num_routes": 6,
-    "vehicle_distribution": {
-      "xlarge": 2,
-      "large": 2,
-      "medium": 2
-    },
-    "charging_stops": 2,
-    "computation_time": 0.0016810894012451172,
-    "success": true,
-    "error": null
-  },
-  {
-    "instance_id": "c40_14",
-    "num_customers": 40,
-    "num_charging_stations": 10,
-    "total_delivery_weight": 3105,
-    "total_distance": 1012.0667345031466,
-    "total_energy": 267.40300952948195,
-    "total_time": 42.52812392558041,
-    "num_routes": 5,
-    "vehicle_distribution": {
-      "xlarge": 2,
-      "large": 2,
-      "medium": 1
-    },
-    "charging_stops": 1,
-    "computation_time": 0.0011990070343017578,
+    "computation_time": 0.0016567707061767578,
     "success": true,
     "error": null
   },
@@ -1266,6 +1116,7 @@
     "total_distance": 1187.0621217293024,
     "total_energy": 308.98440395778414,
     "total_time": 49.30066668735391,
+    "max_time": 13.96535551515796,
     "num_routes": 6,
     "vehicle_distribution": {
       "xlarge": 2,
@@ -1273,18 +1124,59 @@
       "medium": 2
     },
     "charging_stops": 1,
-    "computation_time": 0.0017278194427490234,
+    "computation_time": 0.0020339488983154297,
     "success": true,
     "error": null
   },
   {
-    "instance_id": "c40_2",
+    "instance_id": "c50_12",
+    "num_customers": 50,
+    "num_charging_stations": 10,
+    "total_delivery_weight": 3825,
+    "total_distance": 1209.918873872205,
+    "total_energy": 318.1548242878125,
+    "total_time": 52.26039131852457,
+    "max_time": 12.10103251223118,
+    "num_routes": 6,
+    "vehicle_distribution": {
+      "xlarge": 2,
+      "large": 2,
+      "medium": 2
+    },
+    "charging_stops": 2,
+    "computation_time": 0.0023081302642822266,
+    "success": true,
+    "error": null
+  },
+  {
+    "instance_id": "c50_13",
+    "num_customers": 50,
+    "num_charging_stations": 10,
+    "total_delivery_weight": 3570,
+    "total_distance": 1193.624913264693,
+    "total_energy": 314.60181680214555,
+    "total_time": 51.83590562149682,
+    "max_time": 12.88938580594793,
+    "num_routes": 6,
+    "vehicle_distribution": {
+      "xlarge": 2,
+      "large": 2,
+      "medium": 2
+    },
+    "charging_stops": 2,
+    "computation_time": 0.0017290115356445312,
+    "success": true,
+    "error": null
+  },
+  {
+    "instance_id": "c40_7",
     "num_customers": 40,
     "num_charging_stations": 10,
-    "total_delivery_weight": 2995,
-    "total_distance": 1045.5909222753635,
-    "total_energy": 276.9300992290455,
-    "total_time": 43.869091436469084,
+    "total_delivery_weight": 3075,
+    "total_distance": 944.6369751066397,
+    "total_energy": 252.91952539385872,
+    "total_time": 40.05820627699286,
+    "max_time": 13.095521228921923,
     "num_routes": 5,
     "vehicle_distribution": {
       "xlarge": 2,
@@ -1292,36 +1184,99 @@
       "medium": 1
     },
     "charging_stops": 1,
-    "computation_time": 0.001180887222290039,
+    "computation_time": 0.0010881423950195312,
     "success": true,
     "error": null
   },
   {
-    "instance_id": "c40_3",
+    "instance_id": "c40_20",
     "num_customers": 40,
     "num_charging_stations": 10,
-    "total_delivery_weight": 2870,
-    "total_distance": 960.215831069004,
-    "total_energy": 256.5246616126508,
-    "total_time": 42.49954233366925,
-    "num_routes": 4,
+    "total_delivery_weight": 3125,
+    "total_distance": 990.7484149409901,
+    "total_energy": 262.71418488026825,
+    "total_time": 41.675391143094146,
+    "max_time": 12.082307617755868,
+    "num_routes": 5,
     "vehicle_distribution": {
       "xlarge": 2,
-      "large": 2
+      "large": 2,
+      "medium": 1
     },
-    "charging_stops": 2,
-    "computation_time": 0.0011451244354248047,
+    "charging_stops": 1,
+    "computation_time": 0.0010180473327636719,
     "success": true,
     "error": null
   },
   {
-    "instance_id": "c40_15",
+    "instance_id": "c50_9",
+    "num_customers": 50,
+    "num_charging_stations": 10,
+    "total_delivery_weight": 3675,
+    "total_distance": 1030.1655648342376,
+    "total_energy": 271.5556148749354,
+    "total_time": 41.2066225933695,
+    "max_time": 8.956062467010955,
+    "num_routes": 6,
+    "vehicle_distribution": {
+      "xlarge": 2,
+      "large": 2,
+      "medium": 2
+    },
+    "charging_stops": 0,
+    "computation_time": 0.0016329288482666016,
+    "success": true,
+    "error": null
+  },
+  {
+    "instance_id": "c50_4",
+    "num_customers": 50,
+    "num_charging_stations": 10,
+    "total_delivery_weight": 3685,
+    "total_distance": 1331.1349328478382,
+    "total_energy": 346.6337441077555,
+    "total_time": 57.1090336775499,
+    "max_time": 12.983413463100229,
+    "num_routes": 6,
+    "vehicle_distribution": {
+      "xlarge": 2,
+      "large": 2,
+      "medium": 2
+    },
+    "charging_stops": 2,
+    "computation_time": 0.001779794692993164,
+    "success": true,
+    "error": null
+  },
+  {
+    "instance_id": "c40_16",
     "num_customers": 40,
     "num_charging_stations": 10,
-    "total_delivery_weight": 3130,
-    "total_distance": 997.7055013146272,
-    "total_energy": 266.40610498320075,
-    "total_time": 44.22640187076691,
+    "total_delivery_weight": 3045,
+    "total_distance": 1049.7216235597173,
+    "total_energy": 279.05791580631814,
+    "total_time": 44.03431948784323,
+    "max_time": 14.763717116558364,
+    "num_routes": 5,
+    "vehicle_distribution": {
+      "xlarge": 2,
+      "large": 2,
+      "medium": 1
+    },
+    "charging_stops": 1,
+    "computation_time": 0.001155853271484375,
+    "success": true,
+    "error": null
+  },
+  {
+    "instance_id": "c40_17",
+    "num_customers": 40,
+    "num_charging_stations": 10,
+    "total_delivery_weight": 2950,
+    "total_distance": 962.2155207356741,
+    "total_energy": 256.31964299476635,
+    "total_time": 42.57952992033606,
+    "max_time": 13.25999327526122,
     "num_routes": 5,
     "vehicle_distribution": {
       "xlarge": 2,
@@ -1329,7 +1284,47 @@
       "medium": 1
     },
     "charging_stops": 2,
-    "computation_time": 0.0010268688201904297,
+    "computation_time": 0.0011949539184570312,
+    "success": true,
+    "error": null
+  },
+  {
+    "instance_id": "c40_1",
+    "num_customers": 40,
+    "num_charging_stations": 10,
+    "total_delivery_weight": 3060,
+    "total_distance": 1018.5166649077995,
+    "total_energy": 269.82445144583784,
+    "total_time": 44.83157568722106,
+    "max_time": 12.580997876774166,
+    "num_routes": 5,
+    "vehicle_distribution": {
+      "xlarge": 2,
+      "large": 2,
+      "medium": 1
+    },
+    "charging_stops": 2,
+    "computation_time": 0.002986907958984375,
+    "success": true,
+    "error": null
+  },
+  {
+    "instance_id": "c40_14",
+    "num_customers": 40,
+    "num_charging_stations": 10,
+    "total_delivery_weight": 3105,
+    "total_distance": 1012.0667345031466,
+    "total_energy": 267.40300952948195,
+    "total_time": 42.52812392558041,
+    "max_time": 13.385330204059397,
+    "num_routes": 5,
+    "vehicle_distribution": {
+      "xlarge": 2,
+      "large": 2,
+      "medium": 1
+    },
+    "charging_stops": 1,
+    "computation_time": 0.0012080669403076172,
     "success": true,
     "error": null
   },
@@ -1341,6 +1336,7 @@
     "total_distance": 776.1927397837487,
     "total_energy": 199.83968319372872,
     "total_time": 32.86589140953177,
+    "max_time": 12.313733904801254,
     "num_routes": 4,
     "vehicle_distribution": {
       "xlarge": 1,
@@ -1349,58 +1345,58 @@
       "small": 1
     },
     "charging_stops": 1,
-    "computation_time": 0.00238800048828125,
+    "computation_time": 0.0007748603820800781,
     "success": true,
     "error": null
   },
   {
-    "instance_id": "c30_20",
-    "num_customers": 30,
-    "num_charging_stations": 10,
-    "total_delivery_weight": 2300,
-    "total_distance": 813.3986243686386,
-    "total_energy": 208.62812215118075,
-    "total_time": 34.35412679292736,
-    "num_routes": 4,
-    "vehicle_distribution": {
-      "xlarge": 1,
-      "large": 1,
-      "medium": 1,
-      "small": 1
-    },
-    "charging_stops": 1,
-    "computation_time": 0.0006988048553466797,
-    "success": true,
-    "error": null
-  },
-  {
-    "instance_id": "c30_3",
-    "num_customers": 30,
-    "num_charging_stations": 10,
-    "total_delivery_weight": 2295,
-    "total_distance": 842.7291495202778,
-    "total_energy": 217.0455754388428,
-    "total_time": 38.027347798992935,
-    "num_routes": 4,
-    "vehicle_distribution": {
-      "xlarge": 1,
-      "large": 1,
-      "medium": 1,
-      "small": 1
-    },
-    "charging_stops": 2,
-    "computation_time": 0.0006709098815917969,
-    "success": true,
-    "error": null
-  },
-  {
-    "instance_id": "c40_19",
+    "instance_id": "c40_18",
     "num_customers": 40,
     "num_charging_stations": 10,
-    "total_delivery_weight": 3000,
-    "total_distance": 1106.413421955136,
-    "total_energy": 294.4663281731188,
-    "total_time": 48.57471869638725,
+    "total_delivery_weight": 2840,
+    "total_distance": 946.3852052813388,
+    "total_energy": 255.1561019564002,
+    "total_time": 39.900862756708094,
+    "max_time": 16.808237580126242,
+    "num_routes": 4,
+    "vehicle_distribution": {
+      "xlarge": 2,
+      "large": 2
+    },
+    "charging_stops": 1,
+    "computation_time": 0.001386880874633789,
+    "success": true,
+    "error": null
+  },
+  {
+    "instance_id": "c40_2",
+    "num_customers": 40,
+    "num_charging_stations": 10,
+    "total_delivery_weight": 2995,
+    "total_distance": 1045.5909222753635,
+    "total_energy": 276.9300992290455,
+    "total_time": 43.869091436469084,
+    "max_time": 15.837244009826989,
+    "num_routes": 5,
+    "vehicle_distribution": {
+      "xlarge": 2,
+      "large": 2,
+      "medium": 1
+    },
+    "charging_stops": 1,
+    "computation_time": 0.001123189926147461,
+    "success": true,
+    "error": null
+  },
+  {
+    "instance_id": "c40_15",
+    "num_customers": 40,
+    "num_charging_stations": 10,
+    "total_delivery_weight": 3130,
+    "total_distance": 997.7055013146272,
+    "total_energy": 266.40610498320075,
+    "total_time": 44.22640187076691,
+    "max_time": 12.696059474761682,
     "num_routes": 5,
     "vehicle_distribution": {
       "xlarge": 2,
@@ -1408,45 +1404,26 @@
       "medium": 1
     },
     "charging_stops": 2,
-    "computation_time": 0.0014910697937011719,
+    "computation_time": 0.0014719963073730469,
     "success": true,
     "error": null
   },
   {
-    "instance_id": "c40_12",
+    "instance_id": "c40_3",
     "num_customers": 40,
     "num_charging_stations": 10,
-    "total_delivery_weight": 3165,
-    "total_distance": 1021.4574736433628,
-    "total_energy": 272.04416213572904,
-    "total_time": 42.90375349118906,
-    "num_routes": 5,
+    "total_delivery_weight": 2870,
+    "total_distance": 960.215831069004,
+    "total_energy": 256.5246616126508,
+    "total_time": 42.49954233366925,
+    "max_time": 13.893495154488498,
+    "num_routes": 4,
     "vehicle_distribution": {
       "xlarge": 2,
-      "large": 2,
-      "medium": 1
+      "large": 2
     },
-    "charging_stops": 1,
-    "computation_time": 0.0012679100036621094,
-    "success": true,
-    "error": null
-  },
-  {
-    "instance_id": "c40_9",
-    "num_customers": 40,
-    "num_charging_stations": 10,
-    "total_delivery_weight": 3095,
-    "total_distance": 1031.1979121365925,
-    "total_energy": 274.59746799150037,
-    "total_time": 43.29337103091826,
-    "num_routes": 5,
-    "vehicle_distribution": {
-      "xlarge": 2,
-      "large": 2,
-      "medium": 1
-    },
-    "charging_stops": 1,
-    "computation_time": 0.0011739730834960938,
+    "charging_stops": 2,
+    "computation_time": 0.0011420249938964844,
     "success": true,
     "error": null
   },
@@ -1458,6 +1435,7 @@
     "total_distance": 916.8142997749405,
     "total_energy": 243.168546704509,
     "total_time": 38.71802653645217,
+    "max_time": 13.375851961272353,
     "num_routes": 5,
     "vehicle_distribution": {
       "xlarge": 2,
@@ -1465,27 +1443,7 @@
       "medium": 1
     },
     "charging_stops": 1,
-    "computation_time": 0.0010669231414794922,
-    "success": true,
-    "error": null
-  },
-  {
-    "instance_id": "c30_17",
-    "num_customers": 30,
-    "num_charging_stations": 10,
-    "total_delivery_weight": 2275,
-    "total_distance": 790.0788941033275,
-    "total_energy": 202.14904152252592,
-    "total_time": 33.42133758231491,
-    "num_routes": 4,
-    "vehicle_distribution": {
-      "xlarge": 1,
-      "large": 1,
-      "medium": 1,
-      "small": 1
-    },
-    "charging_stops": 1,
-    "computation_time": 0.0007700920104980469,
+    "computation_time": 0.0014362335205078125,
     "success": true,
     "error": null
   },
@@ -1497,6 +1455,7 @@
     "total_distance": 940.6118532936138,
     "total_energy": 250.66717240797047,
     "total_time": 39.66992867719909,
+    "max_time": 12.463202749776624,
     "num_routes": 5,
     "vehicle_distribution": {
       "xlarge": 2,
@@ -1504,18 +1463,19 @@
       "medium": 1
     },
     "charging_stops": 1,
-    "computation_time": 0.00109100341796875,
+    "computation_time": 0.0011210441589355469,
     "success": true,
     "error": null
   },
   {
-    "instance_id": "c30_16",
+    "instance_id": "c30_17",
     "num_customers": 30,
     "num_charging_stations": 10,
-    "total_delivery_weight": 2100,
-    "total_distance": 901.95364023628,
-    "total_energy": 232.44455578962217,
-    "total_time": 42.21450924581483,
+    "total_delivery_weight": 2275,
+    "total_distance": 790.0788941033275,
+    "total_energy": 202.14904152252592,
+    "total_time": 33.42133758231491,
+    "max_time": 13.929795623931915,
     "num_routes": 4,
     "vehicle_distribution": {
       "xlarge": 1,
@@ -1523,26 +1483,69 @@
       "medium": 1,
       "small": 1
     },
-    "charging_stops": 3,
-    "computation_time": 0.0007648468017578125,
+    "charging_stops": 1,
+    "computation_time": 0.0008637905120849609,
     "success": true,
     "error": null
   },
   {
-    "instance_id": "c40_13",
+    "instance_id": "c40_12",
     "num_customers": 40,
     "num_charging_stations": 10,
-    "total_delivery_weight": 2780,
-    "total_distance": 902.65469190911,
-    "total_energy": 242.6900614425732,
-    "total_time": 42.469824040000766,
-    "num_routes": 4,
+    "total_delivery_weight": 3165,
+    "total_distance": 1021.4574736433628,
+    "total_energy": 272.04416213572904,
+    "total_time": 42.90375349118906,
+    "max_time": 14.218480256347444,
+    "num_routes": 5,
     "vehicle_distribution": {
       "xlarge": 2,
-      "large": 2
+      "large": 2,
+      "medium": 1
     },
-    "charging_stops": 3,
-    "computation_time": 0.0011148452758789062,
+    "charging_stops": 1,
+    "computation_time": 0.0011539459228515625,
+    "success": true,
+    "error": null
+  },
+  {
+    "instance_id": "c40_19",
+    "num_customers": 40,
+    "num_charging_stations": 10,
+    "total_delivery_weight": 3000,
+    "total_distance": 1106.413421955136,
+    "total_energy": 294.4663281731188,
+    "total_time": 48.57471869638725,
+    "max_time": 16.966309729826147,
+    "num_routes": 5,
+    "vehicle_distribution": {
+      "xlarge": 2,
+      "large": 2,
+      "medium": 1
+    },
+    "charging_stops": 2,
+    "computation_time": 0.0017058849334716797,
+    "success": true,
+    "error": null
+  },
+  {
+    "instance_id": "c30_20",
+    "num_customers": 30,
+    "num_charging_stations": 10,
+    "total_delivery_weight": 2300,
+    "total_distance": 813.3986243686386,
+    "total_energy": 208.62812215118075,
+    "total_time": 34.35412679292736,
+    "max_time": 13.10326564043266,
+    "num_routes": 4,
+    "vehicle_distribution": {
+      "xlarge": 1,
+      "large": 1,
+      "medium": 1,
+      "small": 1
+    },
+    "charging_stops": 1,
+    "computation_time": 0.0007648468017578125,
     "success": true,
     "error": null
   },
@@ -1554,6 +1557,7 @@
     "total_distance": 1055.997386824867,
     "total_energy": 280.43884888602685,
     "total_time": 44.285350018449215,
+    "max_time": 16.812586155306107,
     "num_routes": 5,
     "vehicle_distribution": {
       "xlarge": 2,
@@ -1561,7 +1565,46 @@
       "medium": 1
     },
     "charging_stops": 1,
-    "computation_time": 0.0013020038604736328,
+    "computation_time": 0.0011620521545410156,
+    "success": true,
+    "error": null
+  },
+  {
+    "instance_id": "c40_9",
+    "num_customers": 40,
+    "num_charging_stations": 10,
+    "total_delivery_weight": 3095,
+    "total_distance": 1031.1979121365925,
+    "total_energy": 274.59746799150037,
+    "total_time": 43.29337103091826,
+    "max_time": 15.789854261266845,
+    "num_routes": 5,
+    "vehicle_distribution": {
+      "xlarge": 2,
+      "large": 2,
+      "medium": 1
+    },
+    "charging_stops": 1,
+    "computation_time": 0.0011529922485351562,
+    "success": true,
+    "error": null
+  },
+  {
+    "instance_id": "c40_13",
+    "num_customers": 40,
+    "num_charging_stations": 10,
+    "total_delivery_weight": 2780,
+    "total_distance": 902.65469190911,
+    "total_energy": 242.6900614425732,
+    "total_time": 42.469824040000766,
+    "max_time": 12.097300423703054,
+    "num_routes": 4,
+    "vehicle_distribution": {
+      "xlarge": 2,
+      "large": 2
+    },
+    "charging_stops": 3,
+    "computation_time": 0.0015017986297607422,
     "success": true,
     "error": null
   },
@@ -1573,6 +1616,7 @@
     "total_distance": 781.5343520575033,
     "total_energy": 201.75272060099644,
     "total_time": 33.30682862775468,
+    "max_time": 12.191443048171742,
     "num_routes": 4,
     "vehicle_distribution": {
       "xlarge": 1,
@@ -1581,18 +1625,19 @@
       "small": 1
     },
     "charging_stops": 1,
-    "computation_time": 0.0008063316345214844,
+    "computation_time": 0.0015978813171386719,
     "success": true,
     "error": null
   },
   {
-    "instance_id": "c30_4",
+    "instance_id": "c30_16",
     "num_customers": 30,
     "num_charging_stations": 10,
-    "total_delivery_weight": 2360,
-    "total_distance": 850.8589604590125,
-    "total_energy": 217.5948260027471,
-    "total_time": 36.079812963815044,
+    "total_delivery_weight": 2100,
+    "total_distance": 901.95364023628,
+    "total_energy": 232.44455578962217,
+    "total_time": 42.21450924581483,
+    "max_time": 13.142373001516741,
     "num_routes": 4,
     "vehicle_distribution": {
       "xlarge": 1,
@@ -1600,48 +1645,8 @@
       "medium": 1,
       "small": 1
     },
-    "charging_stops": 1,
-    "computation_time": 0.0007660388946533203,
-    "success": true,
-    "error": null
-  },
-  {
-    "instance_id": "c30_11",
-    "num_customers": 30,
-    "num_charging_stations": 10,
-    "total_delivery_weight": 2115,
-    "total_distance": 704.8233839881968,
-    "total_energy": 183.42735161099998,
-    "total_time": 28.192935359527873,
-    "num_routes": 4,
-    "vehicle_distribution": {
-      "xlarge": 1,
-      "large": 1,
-      "medium": 1,
-      "small": 1
-    },
-    "charging_stops": 0,
-    "computation_time": 0.0007431507110595703,
-    "success": true,
-    "error": null
-  },
-  {
-    "instance_id": "c30_6",
-    "num_customers": 30,
-    "num_charging_stations": 10,
-    "total_delivery_weight": 2230,
-    "total_distance": 883.3077244243536,
-    "total_energy": 225.90101112050206,
-    "total_time": 39.195945340610514,
-    "num_routes": 4,
-    "vehicle_distribution": {
-      "xlarge": 1,
-      "large": 1,
-      "medium": 1,
-      "small": 1
-    },
-    "charging_stops": 2,
-    "computation_time": 0.0007002353668212891,
+    "charging_stops": 3,
+    "computation_time": 0.002276182174682617,
     "success": true,
     "error": null
   },
@@ -1653,6 +1658,7 @@
     "total_distance": 785.7955025431816,
     "total_energy": 201.03249927882422,
     "total_time": 31.43182010172726,
+    "max_time": 8.539428942042164,
     "num_routes": 4,
     "vehicle_distribution": {
       "xlarge": 1,
@@ -1661,7 +1667,49 @@
       "small": 1
     },
     "charging_stops": 0,
-    "computation_time": 0.0007119178771972656,
+    "computation_time": 0.0006036758422851562,
+    "success": true,
+    "error": null
+  },
+  {
+    "instance_id": "c30_4",
+    "num_customers": 30,
+    "num_charging_stations": 10,
+    "total_delivery_weight": 2360,
+    "total_distance": 850.8589604590125,
+    "total_energy": 217.5948260027471,
+    "total_time": 36.079812963815044,
+    "max_time": 12.092204399467677,
+    "num_routes": 4,
+    "vehicle_distribution": {
+      "xlarge": 1,
+      "large": 1,
+      "medium": 1,
+      "small": 1
+    },
+    "charging_stops": 1,
+    "computation_time": 0.0016639232635498047,
+    "success": true,
+    "error": null
+  },
+  {
+    "instance_id": "c30_11",
+    "num_customers": 30,
+    "num_charging_stations": 10,
+    "total_delivery_weight": 2115,
+    "total_distance": 704.8233839881968,
+    "total_energy": 183.42735161099998,
+    "total_time": 28.192935359527873,
+    "max_time": 9.390799076565436,
+    "num_routes": 4,
+    "vehicle_distribution": {
+      "xlarge": 1,
+      "large": 1,
+      "medium": 1,
+      "small": 1
+    },
+    "charging_stops": 0,
+    "computation_time": 0.0006189346313476562,
     "success": true,
     "error": null
   },
@@ -1673,6 +1721,7 @@
     "total_distance": 817.9299988460954,
     "total_energy": 209.1367784110013,
     "total_time": 34.76265449929836,
+    "max_time": 12.06654523410466,
     "num_routes": 4,
     "vehicle_distribution": {
       "xlarge": 1,
@@ -1681,7 +1730,28 @@
       "small": 1
     },
     "charging_stops": 1,
-    "computation_time": 0.0008702278137207031,
+    "computation_time": 0.0007600784301757812,
+    "success": true,
+    "error": null
+  },
+  {
+    "instance_id": "c30_3",
+    "num_customers": 30,
+    "num_charging_stations": 10,
+    "total_delivery_weight": 2295,
+    "total_distance": 842.7291495202778,
+    "total_energy": 217.0455754388428,
+    "total_time": 38.027347798992935,
+    "max_time": 11.995402572659854,
+    "num_routes": 4,
+    "vehicle_distribution": {
+      "xlarge": 1,
+      "large": 1,
+      "medium": 1,
+      "small": 1
+    },
+    "charging_stops": 2,
+    "computation_time": 0.0008268356323242188,
     "success": true,
     "error": null
   },
@@ -1693,6 +1763,7 @@
     "total_distance": 751.7388320123484,
     "total_energy": 194.00419716765666,
     "total_time": 30.06955328049394,
+    "max_time": 8.472116141812812,
     "num_routes": 4,
     "vehicle_distribution": {
       "xlarge": 1,
@@ -1701,67 +1772,7 @@
       "small": 1
     },
     "charging_stops": 0,
-    "computation_time": 0.0007891654968261719,
-    "success": true,
-    "error": null
-  },
-  {
-    "instance_id": "c30_12",
-    "num_customers": 30,
-    "num_charging_stations": 10,
-    "total_delivery_weight": 2380,
-    "total_distance": 820.0160549172297,
-    "total_energy": 208.30039802574004,
-    "total_time": 34.391551287598276,
-    "num_routes": 4,
-    "vehicle_distribution": {
-      "xlarge": 1,
-      "large": 1,
-      "medium": 1,
-      "small": 1
-    },
-    "charging_stops": 1,
-    "computation_time": 0.0006577968597412109,
-    "success": true,
-    "error": null
-  },
-  {
-    "instance_id": "c30_15",
-    "num_customers": 30,
-    "num_charging_stations": 10,
-    "total_delivery_weight": 2435,
-    "total_distance": 796.8196819748134,
-    "total_energy": 204.51829264427334,
-    "total_time": 31.87278727899254,
-    "num_routes": 4,
-    "vehicle_distribution": {
-      "xlarge": 1,
-      "large": 1,
-      "medium": 1,
-      "small": 1
-    },
-    "charging_stops": 0,
-    "computation_time": 0.0004947185516357422,
-    "success": true,
-    "error": null
-  },
-  {
-    "instance_id": "c30_9",
-    "num_customers": 30,
-    "num_charging_stations": 10,
-    "total_delivery_weight": 2240,
-    "total_distance": 821.3813880303019,
-    "total_energy": 212.84051106420202,
-    "total_time": 36.94616461212116,
-    "num_routes": 4,
-    "vehicle_distribution": {
-      "xlarge": 1,
-      "large": 1,
-      "medium": 1,
-      "small": 1
-    },
-    "charging_stops": 2,
-    "computation_time": 0.0007750988006591797,
+    "computation_time": 0.0007162094116210938,
     "success": true,
     "error": null
   },
@@ -1773,6 +1784,7 @@
     "total_distance": 859.3137479396139,
     "total_energy": 219.1573242849284,
     "total_time": 36.4180044630391,
+    "max_time": 13.26262547849258,
     "num_routes": 4,
     "vehicle_distribution": {
       "xlarge": 1,
@@ -1781,18 +1793,82 @@
       "small": 1
     },
     "charging_stops": 1,
-    "computation_time": 0.0007951259613037109,
+    "computation_time": 0.0007770061492919922,
     "success": true,
     "error": null
   },
   {
-    "instance_id": "c30_18",
+    "instance_id": "c30_9",
     "num_customers": 30,
     "num_charging_stations": 10,
-    "total_delivery_weight": 2290,
-    "total_distance": 750.2969845486463,
-    "total_energy": 190.07989964165546,
-    "total_time": 30.01187938194585,
+    "total_delivery_weight": 2240,
+    "total_distance": 821.3813880303019,
+    "total_energy": 212.84051106420202,
+    "total_time": 36.94616461212116,
+    "max_time": 13.121263327985048,
+    "num_routes": 4,
+    "vehicle_distribution": {
+      "xlarge": 1,
+      "large": 1,
+      "medium": 1,
+      "small": 1
+    },
+    "charging_stops": 2,
+    "computation_time": 0.0009379386901855469,
+    "success": true,
+    "error": null
+  },
+  {
+    "instance_id": "c30_6",
+    "num_customers": 30,
+    "num_charging_stations": 10,
+    "total_delivery_weight": 2230,
+    "total_distance": 883.3077244243536,
+    "total_energy": 225.90101112050206,
+    "total_time": 39.195945340610514,
+    "max_time": 13.35230079291662,
+    "num_routes": 4,
+    "vehicle_distribution": {
+      "xlarge": 1,
+      "large": 1,
+      "medium": 1,
+      "small": 1
+    },
+    "charging_stops": 2,
+    "computation_time": 0.0008931159973144531,
+    "success": true,
+    "error": null
+  },
+  {
+    "instance_id": "c30_12",
+    "num_customers": 30,
+    "num_charging_stations": 10,
+    "total_delivery_weight": 2380,
+    "total_distance": 820.0160549172297,
+    "total_energy": 208.30039802574004,
+    "total_time": 34.391551287598276,
+    "max_time": 12.31797661688815,
+    "num_routes": 4,
+    "vehicle_distribution": {
+      "xlarge": 1,
+      "large": 1,
+      "medium": 1,
+      "small": 1
+    },
+    "charging_stops": 1,
+    "computation_time": 0.0005087852478027344,
+    "success": true,
+    "error": null
+  },
+  {
+    "instance_id": "c30_15",
+    "num_customers": 30,
+    "num_charging_stations": 10,
+    "total_delivery_weight": 2435,
+    "total_distance": 796.8196819748134,
+    "total_energy": 204.51829264427334,
+    "total_time": 31.87278727899254,
+    "max_time": 8.841553213301687,
     "num_routes": 4,
     "vehicle_distribution": {
       "xlarge": 1,
@@ -1801,7 +1877,7 @@
       "small": 1
     },
     "charging_stops": 0,
-    "computation_time": 0.0010340213775634766,
+    "computation_time": 0.00037932395935058594,
     "success": true,
     "error": null
   },
@@ -1813,6 +1889,7 @@
     "total_distance": 767.7070627144963,
     "total_energy": 197.88734571037773,
     "total_time": 32.753737054034396,
+    "max_time": 13.0556916148849,
     "num_routes": 4,
     "vehicle_distribution": {
       "xlarge": 1,
@@ -1821,7 +1898,28 @@
       "small": 1
     },
     "charging_stops": 1,
-    "computation_time": 0.0009491443634033203,
+    "computation_time": 0.0004112720489501953,
+    "success": true,
+    "error": null
+  },
+  {
+    "instance_id": "c30_18",
+    "num_customers": 30,
+    "num_charging_stations": 10,
+    "total_delivery_weight": 2290,
+    "total_distance": 750.2969845486463,
+    "total_energy": 190.07989964165546,
+    "total_time": 30.01187938194585,
+    "max_time": 8.24241413093392,
+    "num_routes": 4,
+    "vehicle_distribution": {
+      "xlarge": 1,
+      "large": 1,
+      "medium": 1,
+      "small": 1
+    },
+    "charging_stops": 0,
+    "computation_time": 0.00040602684020996094,
     "success": true,
     "error": null
   },
@@ -1833,6 +1931,7 @@
     "total_distance": 879.1021490070875,
     "total_energy": 223.29885207004259,
     "total_time": 36.754995051192594,
+    "max_time": 14.117318031334584,
     "num_routes": 4,
     "vehicle_distribution": {
       "xlarge": 1,
@@ -1841,7 +1940,7 @@
       "small": 1
     },
     "charging_stops": 1,
-    "computation_time": 0.0007169246673583984,
+    "computation_time": 0.0004220008850097656,
     "success": true,
     "error": null
   },
@@ -1853,6 +1952,7 @@
     "total_distance": 789.9178541503511,
     "total_energy": 200.85902937743703,
     "total_time": 31.596714166014046,
+    "max_time": 8.881128942594016,
     "num_routes": 4,
     "vehicle_distribution": {
       "xlarge": 1,
@@ -1861,7 +1961,7 @@
       "small": 1
     },
     "charging_stops": 0,
-    "computation_time": 0.0008978843688964844,
+    "computation_time": 0.00037384033203125,
     "success": true,
     "error": null
   }
