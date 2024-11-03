@@ -16,6 +16,8 @@ import seaborn as sns
 ### Matplot Lib Imports
 import matplotlib.pyplot as plt
 from matplotlib.colors import LinearSegmentedColormap
+from typing import List, Dict, Tuple, Optional
+import itertools
 
 ### Parallel Processing Libraries
 from functools import partial
@@ -142,185 +144,206 @@ class GreedyEVRPSolver:
         self.ev_config = EVConfig()
         self.best_solution = EVRPSolution()
         self.served_customers = set()
-        
-        # NEW: Fleet management attributes
         self.fleet = {
-            'xlarge': 0,  # 800kg capacity
-            'large': 0,   # 700kg capacity
-            'medium': 0,  # 600kg capacity
-            'small': 0    # 500kg capacity
+            'xlarge': 0,
+            'large': 0,
+            'medium': 0,
+            'small': 0
         }
-        self.available_vehicles = []
-
-    def calculate_min_vehicles_needed(self) -> int:
-        """Calculate minimum number of vehicles needed based on total demand"""
+        
+    def calculate_min_vehicles_needed(self) -> Dict[str, int]:
         total_demand = sum(self.instance.customer_items_weights)
-        unit_fleet_capacity = (
-            self.ev_config.categories['xlarge']['load_capacity'] +
-            self.ev_config.categories['large']['load_capacity'] +
-            self.ev_config.categories['medium']['load_capacity'] +
-            self.ev_config.categories['small']['load_capacity']
+        unit_fleet_capacity = sum(
+            self.ev_config.categories[v_type]['load_capacity']
+            for v_type in ['xlarge', 'large', 'medium', 'small']
         )
-        min_vehicles = math.ceil(total_demand / (unit_fleet_capacity))
-        #print(min_vehicles)
-        return max(1, min_vehicles)
-
-    def initialize_fleet(self, min_vehicles: int) -> None:
-        """Initialize fleet with minimum required vehicles"""
-        self.fleet = {
+        min_vehicles = math.ceil(total_demand / unit_fleet_capacity)
+        return {
             'xlarge': min_vehicles,
             'large': min_vehicles,
             'medium': min_vehicles,
             'small': min_vehicles
         }
-        self.generate_vehicle_sequence()
 
-    def generate_vehicle_sequence(self) -> None:
-        self.available_vehicles = []
-        for v_type in ['xlarge','large', 'medium', 'small']:
-            self.available_vehicles.extend([v_type] * self.fleet[v_type])
+    def increase_fleet_binary(self, current_fleet: Dict[str, int]) -> Dict[str, int]:
+        """Increase fleet following binary pattern"""
+        # Get base value (minimum number of vehicles)
+        base = min(current_fleet.values())
+        
+        # Convert current configuration to binary
+        binary = ''
+        for v_type in ['xlarge', 'large', 'medium', 'small']:
+            binary += '1' if current_fleet[v_type] > base else '0'
+        
+        # Increment binary pattern
+        current_value = int(binary, 2)
+        next_value = current_value + 1
+        
+        # If we've used all patterns (1111), increment base
+        if next_value > 15:  # 15 is 1111 in binary
+            base += 1
+            next_value = 0
+        
+        # Convert back to binary
+        new_binary = format(next_value, '04b')
+        
+        # Create new fleet configuration
+        new_fleet = {}
+        for i, v_type in enumerate(['xlarge', 'large', 'medium', 'small']):
+            new_fleet[v_type] = base + (1 if new_binary[i] == '1' else 0)
+        
+        return new_fleet
+    
+    def calculate_proportional_loads(self, fleet: Dict[str, int], total_demand: float) -> Dict[str, float]:
+        """Calculate proportional load distribution based on vehicle capacities"""
+        proportional_loads = {}
+        total_capacity = 0
+        
+        # Calculate total capacity considering vehicle type capacities
+        for v_type, count in fleet.items():
+            if count > 0:
+                capacity = self.ev_config.categories[v_type]['load_capacity']
+                total_capacity += capacity * count
 
-    def increase_fleet_size(self) -> None:
-        for v_type in self.fleet:
-            self.fleet[v_type] += 1
-        self.generate_vehicle_sequence()
+        # Calculate percentages and target loads
+        for v_type, count in fleet.items():
+            if count > 0:
+                # Calculate percentage based on vehicle type capacity
+                capacity = self.ev_config.categories[v_type]['load_capacity']
+                percentage = capacity / total_capacity
+                # Calculate target load
+                target_load = total_demand * percentage
+                # Ensure target load doesn't exceed vehicle capacity
+                proportional_loads[v_type] = min(target_load, capacity)
+            else:
+                proportional_loads[v_type] = 0
 
-    def solve(self) -> EVRPSolution:
-        self.served_customers.clear()
-        solution = EVRPSolution()
+        print(proportional_loads)
+
+        return proportional_loads
+
+    def find_best_next_customer(self, current_pos: int, unserved_customers: List[int]) -> Optional[int]:
+        best_customer = None
+        min_distance = float('inf')
         
-        # Calculate initial fleet size
-        min_vehicles = self.calculate_min_vehicles_needed()
-        self.initialize_fleet(min_vehicles)
-        
-        # Initialize unserved customers
-        unserved = list(range(len(self.instance.customer_locations)))
-        current_vehicle_index = 0
-        
-        while unserved:
-            # Check if we need more vehicles
-            if current_vehicle_index >= len(self.available_vehicles):
-                self.increase_fleet_size()
-                current_vehicle_index = 0
-            
-            # Get next vehicle type
-            vehicle_type = self.available_vehicles[current_vehicle_index]
-            
-            # Create route with specified vehicle type
-            route, load = self.create_route(unserved, vehicle_type)
-            
-            if not route or len(route) <= 2:  # No feasible route found
-                current_vehicle_index += 1
+        for customer_idx in unserved_customers:
+            if customer_idx in self.served_customers:
                 continue
+                
+            customer_id = customer_idx + 1
+            distance_to_customer = self.calculate_distance(current_pos, customer_id)
             
-            # Insert charging stations
-            route_with_charging = self.insert_charging_stations(route, load, vehicle_type)
-            
-            # Calculate route metrics
-            distance, energy, time, battery_levels= self.calculate_route_metrics(
-                route_with_charging, load, vehicle_type)
-            
-            # Update solution
-            solution.add_route(route_with_charging, vehicle_type, load)
-            solution.route_distances.append(distance)
-            solution.route_energies.append(energy)
-            solution.delivery_times.append(time)
-            
-            # Update unserved customers
-            unserved = [c for c in unserved if c not in self.served_customers]
-            current_vehicle_index += 1
-        
-        return solution
+            # Simply choose the nearest customer
+            if distance_to_customer < min_distance:
+                min_distance = distance_to_customer
+                best_customer = customer_idx
+                
+        return best_customer
 
-    def create_route(self, unserved_customers: List[int], vehicle_type: str) -> Tuple[List[int], float]:
-        if not unserved_customers:
-            return [], 0
-            
+    def create_route(self, unserved_customers: List[int], vehicle_type: str, 
+                target_load: float) -> Tuple[List[int], float]:
+        """Create a route with tolerance on proportional load constraints"""
         route = [0]  # Start from depot
         current_load = 0
         current_battery = self.ev_config.initial_charging
-        vehicle_specs = self.ev_config.categories[vehicle_type]
+        tolerance = 0.10  # 10% tolerance
         
         while unserved_customers:
-            next_customer = self.find_best_next_customer(
-                route[-1],
-                unserved_customers,
-                current_load,
-                current_battery,
-                vehicle_type
-            )
+            next_customer = self.find_best_next_customer(route[-1], unserved_customers)
             
             if next_customer is None:
                 break
                 
-            # Add customer to route
-            customer_id = next_customer + 1  # Convert to 1-based indexing
+            customer_demand = self.instance.customer_items_weights[next_customer]
+            is_last_customer = len(unserved_customers) == 1
+            
+            # Check constraints with tolerance
+            exceeds_vehicle_capacity = current_load + customer_demand > self.ev_config.categories[vehicle_type]['load_capacity']
+            exceeds_target_with_tolerance = current_load + customer_demand > target_load * (1 + tolerance)
+            
+            # If it's the last customer, only check vehicle capacity
+            if is_last_customer:
+                if exceeds_vehicle_capacity:
+                    break
+            else:
+                # For other customers, check both constraints
+                if exceeds_vehicle_capacity or exceeds_target_with_tolerance:
+                    break
+                
+            customer_id = next_customer + 1
             route.append(customer_id)
+            current_load += customer_demand
             
-            # Update tracking variables
-            current_load += self.instance.customer_items_weights[next_customer]
-            distance = self.calculate_distance(route[-2], customer_id)
-            energy_used = self.calculate_energy_consumption(
-                distance, current_load, vehicle_type)
-            current_battery -= energy_used
-            
-            # Mark customer as served
             self.served_customers.add(next_customer)
             
         route.append(0)  # Return to depot
         return route, current_load
 
-    def find_best_next_customer(self, current_pos: int, unserved_customers: List[int],
-                              current_load: float, current_battery: float,
-                              vehicle_type: str) -> int:
-        best_customer = None
-        min_distance = float('inf')
-        vehicle_specs = self.ev_config.categories[vehicle_type]
+    def solve(self) -> EVRPSolution:
+        """Main solving procedure with distance-based customer selection"""
+        total_demand = sum(self.instance.customer_items_weights)
+        # Start with minimum vehicles
+        self.fleet = self.calculate_min_vehicles_needed()
+        max_attempts = 16  # Maximum number of fleet configurations to try
+        attempt = 0
         
-        # Special handling when at depot
-        if current_pos == 0:
-            # Simply find the nearest feasible customer when starting from depot
-            for customer_idx in unserved_customers:
-                if customer_idx in self.served_customers:
-                    continue
-                    
-                customer_id = customer_idx + 1
-                distance_to_customer = self.calculate_distance(current_pos, customer_id)
-                customer_demand = self.instance.customer_items_weights[customer_idx]
-                
-                # Check load feasibility for specific vehicle type
-                if current_load + customer_demand > vehicle_specs['load_capacity']:
-                    continue
-                
-                if distance_to_customer < min_distance:
-                    min_distance = distance_to_customer
-                    best_customer = customer_idx
-        else:
-            # When not at depot, use distance comparison
-            distance_to_depot = self.calculate_distance(current_pos, 0)
+        while attempt < max_attempts:
+            print(f"\nAttempt {attempt + 1}: Trying fleet configuration: {self.fleet}")
+            solution = EVRPSolution()
+            solution.computation_time = 0.0
+            self.served_customers.clear()
             
-            for customer_idx in unserved_customers:
-                if customer_idx in self.served_customers:
-                    continue
+            proportional_loads = self.calculate_proportional_loads(self.fleet, total_demand)
+            print(f"\nProportional target loads:")
+            for v_type in ['small', 'medium', 'large', 'xlarge']:
+                print(f"{v_type}: {proportional_loads[v_type]:.2f} kg (max capacity: {self.ev_config.categories[v_type]['load_capacity']} kg)")
+            
+            # Create routes for each vehicle type
+            for v_type in ['small', 'medium', 'large', 'xlarge']:
+                num_vehicles = self.fleet[v_type]
+                
+                print(f"\nAssigning customers to {v_type} vehicles")
+                print(f"Target load per vehicle: {proportional_loads[v_type]:.2f} kg")
+                
+                for vehicle_num in range(num_vehicles):
+                    if len(self.served_customers) == len(self.instance.customer_locations):
+                        break
+                        
+                    unserved = [i for i in range(len(self.instance.customer_locations)) 
+                            if i not in self.served_customers]
                     
-                customer_id = customer_idx + 1
-                distance_to_customer = self.calculate_distance(current_pos, customer_id)
-                customer_demand = self.instance.customer_items_weights[customer_idx]
-                
-                
-                # Check load feasibility for specific vehicle type
-                if current_load + customer_demand > vehicle_specs['load_capacity']:
-                    continue
-                
-                if distance_to_customer < min_distance:
-                    min_distance = distance_to_customer
-                    best_customer = customer_idx
+                    route, load = self.create_route(unserved, v_type, 
+                                                proportional_loads[v_type])  # Now using proportional load
                     
-        return best_customer
-
+                    if route and len(route) > 2:  # If route contains any customers
+                        route_with_charging = self.insert_charging_stations(route, load, v_type)
+                        distance, energy, time, battery_levels = self.calculate_route_metrics(
+                            route_with_charging, load, v_type)
+                        
+                        solution.add_route(route_with_charging, v_type, load)
+                        solution.route_distances.append(distance)
+                        solution.route_energies.append(energy)
+                        solution.delivery_times.append(time)
+                        
+                        print(f"Created route for {v_type} vehicle {vehicle_num + 1}:")
+                        print(f"Load: {load:.2f} kg")
+                        print(f"Customers: {[c for c in route if c > 0]}")
+            
+            unserved_count = len(self.instance.customer_locations) - len(self.served_customers)
+            if unserved_count == 0:
+                print("\nAll customers served successfully!")
+                return solution
+            else:
+                print(f"\nWarning: {unserved_count} customers remain unserved")
+                print("Increasing fleet size...")
+                self.fleet = self.increase_fleet_binary(self.fleet)
+                attempt += 1
+        
+        print("\nNo feasible solution found within maximum attempts")
+        return EVRPSolution()  # Return empty solution instead of None
+    
     def insert_charging_stations(self, route: List[int], load: float, 
                                vehicle_type: str) -> List[int]:
-        """Inserts charging stations when needed based on energy consumption"""
         if len(route) <= 2:  # Only depot-customer-depot
             return route
             
@@ -367,6 +390,7 @@ class GreedyEVRPSolver:
         current_load = load
         current_battery = self.ev_config.initial_charging
         battery_levels = [(route[0], current_battery)]
+        
         for i in range(len(route) - 1):
             from_loc = route[i]
             to_loc = route[i + 1]
@@ -391,8 +415,9 @@ class GreedyEVRPSolver:
                 current_load -= self.instance.customer_items_weights[to_loc-1]
             
             battery_levels.append((to_loc, current_battery))
+        
         return total_distance, total_energy, total_time, battery_levels
-    
+
     def calculate_energy_consumption(self, distance: float, load: float, 
                                   vehicle_type: str) -> float:
         """Calculate energy consumption for a given distance and load"""
