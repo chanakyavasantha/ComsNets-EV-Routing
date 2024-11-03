@@ -1,293 +1,188 @@
-INITIAL SOLUTION ALGORITHM FOR EV ROUTING
+# Simulated Annealing Electric Vehicle Routing Problem (SAEVRP) Algorithm
 
-Objective: Create initial routes by clustering customers geographically while respecting vehicle capacities
+## Input Parameters
+- `D`: Depot location coordinates (x, y)
+- `C`: Set of customer locations with coordinates (x, y)
+- `S`: Set of charging station locations with coordinates (x, y)
+- `W`: Set of customer demands (weights)
+- `R`: Charging rate (kWh/h)
+- `T0`: Initial temperature
+- `Tf`: Final temperature
+- `α`: Cooling rate
+- `L`: Number of iterations at each temperature
+- Vehicle categories (small, medium, large, xlarge) with parameters from EVConfig
 
-Input:
-- customer_locations: List of (x,y) coordinates for each customer
-- customer_demands: List of demands (weights) for each customer
-- depot_location: (x,y) coordinate of depot
-- vehicle_types: Dictionary of available vehicle types and their specifications
-    {
-        'small':  {'capacity': 500, 'battery': 35, 'weight': 1500},
-        'medium': {'capacity': 600, 'battery': 40, 'weight': 1800},
-        'large':  {'capacity': 700, 'battery': 45, 'weight': 2000},
-        'xlarge': {'capacity': 800, 'battery': 50, 'weight': 2200}
-    }
+## Algorithm
 
-Output:
-- Solution object containing:
-    - routes: List of routes, each route is list of customer indices
-    - vehicle_types: List of assigned vehicle type for each route
-    - loads: List of total load for each route
+### Phase 1: Initialization
+```
+Algorithm 1: Initialize_SAEVRP
+Input: D, C, S, W, R, T0, Tf, α, L
+Output: Initial solution and SA parameters
 
-Algorithm Steps:
+1. CREATE greedy_solver ← GreedyEVRPSolver(instance)
+2. SET initial_solution ← greedy_solver.solve()
+3. SET current_solution ← initial_solution
+4. SET best_solution ← initial_solution
+5. SET temperature ← T0
+6. SET iteration_count ← 0
+7. RETURN initialized state
+```
 
-1. DETERMINE NUMBER OF CLUSTERS:
-   function calculate_initial_clusters(customer_demands, min_vehicle_capacity):
-       total_demand = sum(customer_demands)
-       return ceiling(total_demand / min_vehicle_capacity)
+### Phase 2: Main SA Solver
+```
+Algorithm 2: Solve_SAEVRP
+Input: EVRP instance, SA parameters
+Output: Best solution found
 
-2. PERFORM K-MEANS CLUSTERING:
-   function cluster_customers(customer_locations, num_clusters):
-       Input: customer locations as (x,y) coordinates
-       Output: cluster assignments for each customer
-       
-       Initialize K-means with num_clusters centroids
-       Run K-means until convergence
-       Return cluster assignments
+1. Initialize_SAEVRP()
+2. WHILE temperature > Tf DO:
+    3. FOR iteration in range(L):
+        4. SET new_solution ← Generate_Neighbor(current_solution)
+        5. IF Is_Feasible(new_solution) THEN:
+            6. SET Δ ← Calculate_Delta(current_solution, new_solution)
+            7. IF Δ < 0 OR random(0,1) < exp(-Δ/temperature) THEN:
+                8. SET current_solution ← new_solution
+                9. IF Cost(new_solution) < Cost(best_solution) THEN:
+                    10. SET best_solution ← new_solution
+    
+    11. SET temperature ← temperature * α
+    12. INCREMENT iteration_count
 
-3. CREATE ROUTES FROM CLUSTERS:
-   function create_routes_from_clusters(cluster_assignments, customer_locations):
-       For each cluster:
-           Initialize empty route
-           Add depot (0) as first point
-           
-           // Use nearest neighbor within cluster
-           current = depot
-           unvisited = customers in current cluster
-           While unvisited not empty:
-               next = find_nearest(current, unvisited)
-               Add next to route
-               Remove next from unvisited
-               current = next
-           
-           Add depot (0) as last point
-           Add route to routes list
+13. RETURN best_solution
+```
 
-4. ASSIGN VEHICLE TYPES:
-   function assign_vehicle_types(routes, customer_demands, vehicle_types):
-       For each route:
-           Calculate total_load for route
-           Find smallest vehicle type that can handle load:
-               For each vehicle_type in ascending capacity order:
-                   If vehicle_type.capacity >= total_load:
-                       Assign vehicle_type to route
-                       Break
+### Phase 3: Neighbor Generation
+```
+Algorithm 3: Generate_Neighbor
+Input: current_solution
+Output: new_solution
 
-5. MAIN INITIALIZATION FUNCTION:
-   function initialize_solution():
-       // Step 1: Calculate number of clusters
-       num_clusters = calculate_initial_clusters(
-           customer_demands, 
-           min_vehicle_capacity=500
-       )
-       
-       // Step 2: Cluster customers
-       cluster_assignments = cluster_customers(
-           customer_locations, 
-           num_clusters
-       )
-       
-       // Step 3: Create routes
-       routes = create_routes_from_clusters(
-           cluster_assignments,
-           customer_locations
-       )
-       
-       // Step 4: Assign vehicles
-       vehicle_types = assign_vehicle_types(
-           routes,
-           customer_demands,
-           vehicle_types
-       )
-       
-       Return Solution(routes, vehicle_types)
+1. SET new_solution ← Deep_Copy(current_solution)
+2. SET operator ← Random_Select_Operator([
+    'Intra_Route_Exchange',
+    'Inter_Route_Exchange',
+    'Route_Split',
+    'Route_Merge',
+    'Vehicle_Type_Change',
+    'Charging_Station_Relocate'
+])
 
-Example Usage:
-Input:
-- 8 customers with locations and demands (from previous example)
-- Depot at (0,0)
+3. SWITCH operator:
+    CASE 'Intra_Route_Exchange':
+        4. SELECT random route from new_solution
+        5. SWAP two random customers within route
+        6. UPDATE charging stations
 
-Output Example:
-{
-    'routes': [
-        [0, 1, 4, 2, 0],    # Cluster 1 route
-        [0, 3, 7, 0],       # Cluster 2 route
-        [0, 5, 8, 6, 0]     # Cluster 3 route
-    ],
-    'vehicle_types': [
-        'small',            # For route 1
-        'small',            # For route 2
-        'small'             # For route 3
-    ],
-    'loads': [
-        370,               # Total load for route 1
-        330,               # Total load for route 2
-        430                # Total load for route 3
-    ]
-}
+    CASE 'Inter_Route_Exchange':
+        7. SELECT two different random routes
+        8. SWAP customers between routes
+        9. UPDATE charging stations and vehicle loads
 
+    CASE 'Route_Split':
+        10. SELECT longest route
+        11. SPLIT into two routes
+        12. ASSIGN appropriate vehicle types
+        13. UPDATE charging stations
 
-NEIGHBORHOOD OPERATIONS FOR EV ROUTING
+    CASE 'Route_Merge':
+        14. SELECT two compatible routes
+        15. MERGE if capacity constraints allow
+        16. UPDATE charging stations
 
-Objective: Define operations that generate neighboring solutions by modifying customer sequences
+    CASE 'Vehicle_Type_Change':
+        17. SELECT random route
+        18. CHANGE vehicle type
+        19. VERIFY capacity constraints
+        20. UPDATE charging stations
 
-Types of Operations:
+    CASE 'Charging_Station_Relocate':
+        21. SELECT random route
+        22. RELOCATE charging station to alternative
+        23. UPDATE energy calculations
 
-1. INTER-ROUTE OPERATIONS (Between Routes):
+24. RETURN new_solution
+```
 
-   a) SWAP Operation:
-      Input: Two routes R1, R2 and positions i, j
-      Function: Exchange customers at position i in R1 with position j in R2
-      
-      Example:
-      R1: [0 → 1 → 2 → 3 → 0]
-      R2: [0 → 4 → 5 → 6 → 0]
-      Swap(R1[2], R2[2])
-      Result:
-      R1: [0 → 1 → 5 → 3 → 0]
-      R2: [0 → 4 → 2 → 6 → 0]
+### Phase 4: Solution Evaluation
+```
+Algorithm 4: Calculate_Delta
+Input: current_solution, new_solution
+Output: cost difference
 
-   b) RELOCATE Operation:
-      Input: Source route Rs, destination route Rd, position i
-      Function: Move customer from position i in Rs to best position in Rd
-      
-      Example:
-      R1: [0 → 1 → 2 → 3 → 0]
-      R2: [0 → 4 → 5 → 6 → 0]
-      Relocate(R1[2] to R2)
-      Result:
-      R1: [0 → 1 → 3 → 0]
-      R2: [0 → 4 → 2 → 5 → 6 → 0]
+1. SET current_cost ← Calculate_Total_Cost(current_solution)
+2. SET new_cost ← Calculate_Total_Cost(new_solution)
+3. RETURN new_cost - current_cost
 
-2. INTRA-ROUTE OPERATIONS (Within Route):
+Function: Calculate_Total_Cost(solution)
+1. SET total_cost ← 0
+2. SET distance_weight ← w1
+3. SET energy_weight ← w2
+4. SET vehicle_weight ← w3
 
-   a) 2-OPT Operation:
-      Input: Single route R, positions i, j
-      Function: Reverse sequence between positions i and j
-      
-      Example:
-      R: [0 → 1 → 2 → 3 → 4 → 0]
-      2-opt(R, 2, 4)
-      Result:
-      R: [0 → 1 → 4 → 3 → 2 → 0]
+5. FOR each route in solution:
+    6. ADD distance_weight * route.total_distance to total_cost
+    7. ADD energy_weight * route.total_energy to total_cost
+    8. ADD vehicle_weight * vehicle_count to total_cost
 
-   b) RELOCATE Operation:
-      Input: Route R, positions i, j
-      Function: Move customer from position i to j
-      
-      Example:
-      R: [0 → 1 → 2 → 3 → 4 → 0]
-      Relocate(R, 2, 4)
-      Result:
-      R: [0 → 1 → 3 → 4 → 2 → 0]
+9. RETURN total_cost
+```
 
-Implementation:
+### Phase 5: Feasibility Check
+```
+Algorithm 5: Is_Feasible
+Input: solution
+Output: boolean
 
-```python
-class NeighborhoodOperations:
-    def swap_between_routes(self, solution, r1_idx, r2_idx, pos1, pos2):
-        """
-        Swap customers between two routes
-        
-        Args:
-            solution: Current solution
-            r1_idx, r2_idx: Indices of routes to swap between
-            pos1, pos2: Positions in routes to swap
-            
-        Returns:
-            New solution with swap performed
-        """
-        new_solution = deepcopy(solution)
-        route1 = new_solution.routes[r1_idx]
-        route2 = new_solution.routes[r2_idx]
-        
-        # Perform swap
-        route1[pos1], route2[pos2] = route2[pos2], route1[pos1]
-        
-        # Update vehicle assignments if needed
-        self._update_vehicle_types([r1_idx, r2_idx], new_solution)
-        
-        return new_solution
+1. FOR each route in solution:
+    2. IF route.total_load > vehicle_capacity THEN:
+        3. RETURN false
+    
+    4. IF route.total_energy > battery_capacity THEN:
+        5. RETURN false
+    
+    6. FOR each segment in route:
+        7. IF segment.battery_level < safety_margin THEN:
+            8. RETURN false
 
-    def relocate_between_routes(self, solution, source_idx, dest_idx, pos):
-        """
-        Relocate customer from one route to another
-        
-        Args:
-            solution: Current solution
-            source_idx, dest_idx: Route indices
-            pos: Position to move from source route
-            
-        Returns:
-            New solution with relocation performed
-        """
-        new_solution = deepcopy(solution)
-        source_route = new_solution.routes[source_idx]
-        dest_route = new_solution.routes[dest_idx]
-        
-        # Remove customer from source route
-        customer = source_route.pop(pos)
-        
-        # Find best insertion position in destination route
-        best_pos = self._find_best_insertion(dest_route, customer)
-        dest_route.insert(best_pos, customer)
-        
-        # Update vehicle assignments
-        self._update_vehicle_types([source_idx, dest_idx], new_solution)
-        
-        return new_solution
+9. IF any customer not served exactly once THEN:
+    10. RETURN false
 
-    def two_opt_within_route(self, solution, route_idx, i, j):
-        """
-        Perform 2-opt operation within a route
-        
-        Args:
-            solution: Current solution
-            route_idx: Route to modify
-            i, j: Positions to reverse between
-            
-        Returns:
-            New solution with 2-opt performed
-        """
-        new_solution = deepcopy(solution)
-        route = new_solution.routes[route_idx]
-        
-        # Reverse segment
-        route[i:j+1] = reversed(route[i:j+1])
-        
-        return new_solution
+11. RETURN true
+```
 
-    def relocate_within_route(self, solution, route_idx, pos1, pos2):
-        """
-        Relocate customer within a route
-        
-        Args:
-            solution: Current solution
-            route_idx: Route to modify
-            pos1, pos2: Position to move from/to
-            
-        Returns:
-            New solution with relocation performed
-        """
-        new_solution = deepcopy(solution)
-        route = new_solution.routes[route_idx]
-        
-        # Perform relocation
-        customer = route.pop(pos1)
-        route.insert(pos2, customer)
-        
-        return new_solution
+## Complexity Analysis
+- Time Complexity: O(L * N * M) where:
+  - L: Total number of iterations (L * number of temperature steps)
+  - N: Number of customers
+  - M: Number of charging stations
+- Space Complexity: O(N²) for distance matrices and solution storage
 
-    def _find_best_insertion(self, route, customer):
-        """Helper function to find best position to insert customer"""
-        best_pos = 1  # Start after depot
-        best_cost = float('inf')
-        
-        for i in range(1, len(route)):
-            # Try insertion at position i
-            test_route = route[:i] + [customer] + route[i:]
-            cost = self._calculate_route_duration(test_route)
-            
-            if cost < best_cost:
-                best_cost = cost
-                best_pos = i
-                
-        return best_pos
+## Solution Components
+1. Total Cost Function:
+   ```
+   Total_Cost = w1 * total_distance + 
+                w2 * total_energy_consumption +
+                w3 * number_of_vehicles
+   ```
 
-    def _update_vehicle_types(self, route_indices, solution):
-        """Helper function to update vehicle types after route modification"""
-        for idx in route_indices:
-            route = solution.routes[idx]
-            total_load = sum(self.customer_demands[c-1] for c in route[1:-1])
-            solution.vehicle_types[idx] = self._select_vehicle_type(total_load)
+2. Cooling Schedule:
+   ```
+   T = T0 * α^k
+   where k is the iteration number
+   ```
+
+3. Acceptance Probability:
+   ```
+   P(Δ,T) = exp(-Δ/T)
+   where Δ is the cost difference
+   ```
+
+## Output
+- Best solution found containing:
+  - Optimized routes
+  - Vehicle assignments
+  - Charging station placements
+  - Total cost metrics
+  - Energy consumption
+  - Computation statistics
