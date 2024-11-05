@@ -195,31 +195,80 @@ class GreedyEVRPSolver:
         return new_fleet
     
     def calculate_proportional_loads(self, fleet: Dict[str, int], total_demand: float) -> Dict[str, float]:
-        """Calculate proportional load distribution based on vehicle capacities"""
         proportional_loads = {}
-        total_capacity = 0
+        vehicle_capacities = {}
+        total_vehicles = 0
         
-        # Calculate total capacity considering vehicle type capacities
+        # Get vehicle capacities and count total vehicles
         for v_type, count in fleet.items():
             if count > 0:
-                capacity = self.ev_config.categories[v_type]['load_capacity']
-                total_capacity += capacity * count
-
-        # Calculate percentages and target loads
-        for v_type, count in fleet.items():
-            if count > 0:
-                # Calculate percentage based on vehicle type capacity
-                capacity = self.ev_config.categories[v_type]['load_capacity']
-                percentage = capacity / total_capacity
-                # Calculate target load
-                target_load = total_demand * percentage
-                # Ensure target load doesn't exceed vehicle capacity
-                proportional_loads[v_type] = min(target_load, capacity)
-            else:
+                vehicle_capacities[v_type] = self.ev_config.categories[v_type]['load_capacity']
+                total_vehicles += count
+        
+        if total_vehicles == 0:
+            return {v_type: 0 for v_type in fleet}
+        
+        # Calculate base load per vehicle (equal distribution)
+        base_load_per_vehicle = total_demand / total_vehicles
+        
+        # First pass: Assign base load or capacity, whichever is smaller
+        remaining_demand = total_demand
+        remaining_vehicles = total_vehicles
+        
+        for v_type in fleet:
+            if fleet[v_type] > 0:
+                capacity = vehicle_capacities[v_type]
+                count = fleet[v_type]
+                
+                # Assign minimum of base load or capacity
+                load_per_vehicle = min(base_load_per_vehicle, capacity)
+                proportional_loads[v_type] = load_per_vehicle
+                
+                # Update remaining demand and vehicles
+                actual_load = load_per_vehicle * count
+                remaining_demand -= actual_load
+                if load_per_vehicle < base_load_per_vehicle:
+                    remaining_vehicles -= count
+        
+        # Second pass: Redistribute excess to vehicles with remaining capacity
+        if remaining_demand > 0 and remaining_vehicles > 0:
+            additional_load_per_vehicle = remaining_demand / remaining_vehicles
+            
+            for v_type in fleet:
+                if fleet[v_type] > 0:
+                    current_load = proportional_loads[v_type]
+                    capacity = vehicle_capacities[v_type]
+                    
+                    if current_load < capacity:
+                        # Can take more load
+                        new_load = min(capacity, current_load + additional_load_per_vehicle)
+                        proportional_loads[v_type] = new_load
+        
+        # Add zero loads for unused vehicle types
+        for v_type in fleet:
+            if v_type not in proportional_loads:
                 proportional_loads[v_type] = 0
-
-        print(proportional_loads)
-
+        
+        # Print distribution information
+        print(f"\nLoad Distribution Details:")
+        print(f"Total Demand: {total_demand:.2f}")
+        print(f"Base Load Per Vehicle: {base_load_per_vehicle:.2f}")
+        print("\nPer Vehicle Type Assignment:")
+        
+        total_allocated = 0
+        for v_type in proportional_loads:
+            if fleet[v_type] > 0:
+                load = proportional_loads[v_type]
+                capacity = vehicle_capacities[v_type]
+                count = fleet[v_type]
+                total_type_load = load * count
+                total_allocated += total_type_load
+                
+                print(f"{v_type:>8}: {load:.2f} kg/vehicle × {count} vehicles = {total_type_load:.2f} kg "
+                    f"(capacity: {capacity:.2f} kg)")
+        
+        print(f"\nTotal Allocated: {total_allocated:.2f} kg")
+        
         return proportional_loads
 
     def find_best_next_customer(self, current_pos: int, unserved_customers: List[int]) -> Optional[int]:
@@ -242,11 +291,23 @@ class GreedyEVRPSolver:
 
     def create_route(self, unserved_customers: List[int], vehicle_type: str, 
                 target_load: float) -> Tuple[List[int], float]:
-        """Create a route with tolerance on proportional load constraints"""
+        """
+        Create a route allowing only one customer to exceed the proportional load target.
+        
+        Args:
+            unserved_customers: List of customer indices not yet served
+            vehicle_type: Type of vehicle ('small', 'medium', 'large', 'xlarge')
+            target_load: Target proportional load for this vehicle type
+            
+        Returns:
+            Tuple containing:
+            - List[int]: Route (sequence of customer indices, starting and ending with depot)
+            - float: Total load for the route
+        """
         route = [0]  # Start from depot
         current_load = 0
-        current_battery = self.ev_config.initial_charging
-        tolerance = 0.10  # 10% tolerance
+        allowed_excess = True  # Flag to track if we can still allow one customer to exceed
+        vehicle_capacity = self.ev_config.categories[vehicle_type]['load_capacity']
         
         while unserved_customers:
             next_customer = self.find_best_next_customer(route[-1], unserved_customers)
@@ -257,24 +318,27 @@ class GreedyEVRPSolver:
             customer_demand = self.instance.customer_items_weights[next_customer]
             is_last_customer = len(unserved_customers) == 1
             
-            # Check constraints with tolerance
-            exceeds_vehicle_capacity = current_load + customer_demand > self.ev_config.categories[vehicle_type]['load_capacity']
-            exceeds_target_with_tolerance = current_load + customer_demand > target_load * (1 + tolerance)
-            
-            # If it's the last customer, only check vehicle capacity
-            if is_last_customer:
-                if exceeds_vehicle_capacity:
-                    break
-            else:
-                # For other customers, check both constraints
-                if exceeds_vehicle_capacity or exceeds_target_with_tolerance:
-                    break
+            # Check if adding this customer would exceed vehicle capacity
+            if current_load + customer_demand > vehicle_capacity:
+                break
                 
+            # Check if adding this customer would exceed target load
+            exceeds_target = current_load + customer_demand > target_load
+            
+            if exceeds_target:
+                if allowed_excess and not is_last_customer:
+                    # Allow this customer but mark that we can't exceed again
+                    allowed_excess = False
+                else:
+                    # We've already used our one excess or it's the last customer
+                    break
+                    
             customer_id = next_customer + 1
             route.append(customer_id)
             current_load += customer_demand
             
             self.served_customers.add(next_customer)
+            unserved_customers.remove(next_customer)
             
         route.append(0)  # Return to depot
         return route, current_load
@@ -612,7 +676,7 @@ def run_parallel_experiments(
     
     # Save detailed results
     timestamp = datetime.now().strftime('%Y%m%d_%H%M%S')
-    results_path = os.path.join(output_dir, f'greedy_results_{timestamp}.json')
+    results_path = os.path.join(output_dir, f'greedy_results_equal_proportional_loads_{timestamp}.json')
     
     with open(results_path, 'w') as f:
         json.dump(results, f, indent=2)
@@ -635,7 +699,7 @@ def run_parallel_experiments(
             })
     
     summary_df = pd.DataFrame(summary_data)
-    summary_path = os.path.join(output_dir, f'greedy_summary_{timestamp}.csv')
+    summary_path = os.path.join(output_dir, f'greedy_summary_equal_proprtitonal_loads_{timestamp}.csv')
     summary_df.to_csv(summary_path, index=False)
     
     print("\nExperiment Results Summary:")
