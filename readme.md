@@ -22,7 +22,7 @@ This project implements intelligent algorithms for optimizing delivery routes in
 
 This work has been published in IEEE and presented at an international conference:
 
-**"Intelligent Algorithm for Optimizing Delivery Time in Electric Vehicle Fleet Systems"**  
+**"Intelligent Algorithm for Optimizing Delivery Time in Electric Vehicle Fleet Systems"**
 *IEEE Conference Publication* - [View Paper](https://ieeexplore.ieee.org/document/10885593)
 
 ## 🏗️ Project Structure
@@ -60,11 +60,11 @@ ComsNets-EV-Routing/
 ### Electric Vehicle Categories
 
 | Category | Battery (kWh) | Base Weight (kg) | Load Capacity (kg) | Range (km)* |
-|----------|---------------|------------------|-------------------|-------------|
-| Small    | 35           | 1,500            | 500               | 112-140     |
-| Medium   | 40           | 1,800            | 600               | 118-148     |
-| Large    | 45           | 2,000            | 700               | 126-158     |
-| XLarge   | 50           | 2,200            | 800               | 135-175     |
+| -------- | ------------- | ---------------- | ------------------ | ----------- |
+| Small    | 35            | 1,500            | 500                | 112-140     |
+| Medium   | 40            | 1,800            | 600                | 118-148     |
+| Large    | 45            | 2,000            | 700                | 126-158     |
+| XLarge   | 50            | 2,200            | 800                | 135-175     |
 
 *Range varies based on load and battery charge level (20%-80% operational range)
 
@@ -85,18 +85,19 @@ ComsNets-EV-Routing/
 ### Installation
 
 1. **Clone the repository**:
+
    ```bash
    git clone <repository-url>
    cd ComsNets-EV-Routing
    ```
-
 2. **Create virtual environment** (recommended):
+
    ```bash
    python -m venv venv
    source venv/bin/activate  # On Windows: venv\Scripts\activate
    ```
-
 3. **Install dependencies**:
+
    ```bash
    pip install -r requirements.txt
    ```
@@ -117,21 +118,22 @@ ComsNets-EV-Routing/
 ### Quick Start
 
 1. **Generate Test Cases**:
+
    ```bash
    jupyter notebook Notebooks/Input.ipynb
    ```
-
 2. **Run Greedy Algorithm**:
+
    ```bash
    jupyter notebook Notebooks/Greedy.ipynb
    ```
-
 3. **Run Simulated Annealing**:
+
    ```bash
    jupyter notebook Notebooks/SA.ipynb
    ```
-
 4. **Analyze Results**:
+
    ```bash
    jupyter notebook Notebooks/ResultAnalysis.ipynb
    ```
@@ -161,6 +163,7 @@ jupyter notebook Notebooks/TestCaseVisualizer.ipynb
 ### 1. Greedy Heuristic
 
 A fast construction algorithm that builds feasible routes by:
+
 - Selecting nearest unserved customers
 - Managing battery constraints with strategic charging
 - Balancing load distribution across vehicle types
@@ -170,6 +173,7 @@ A fast construction algorithm that builds feasible routes by:
 ### 2. Simulated Annealing (SA)
 
 An advanced metaheuristic that improves upon greedy solutions through:
+
 - Load-based neighbor generation
 - Temperature-controlled acceptance criteria
 - Iterative route optimization
@@ -179,6 +183,7 @@ An advanced metaheuristic that improves upon greedy solutions through:
 ### 3. Parallel Processing
 
 Both algorithms support parallel execution for:
+
 - Multiple test case evaluation
 - Statistical analysis across different scenarios
 - Scalability testing
@@ -188,7 +193,7 @@ Both algorithms support parallel execution for:
 The algorithms have been tested on various scenarios:
 
 - **Test Cases**: 10-50 customers with varying demand distributions
-- **Performance Metrics**: 
+- **Performance Metrics**:
   - Total delivery time
   - Vehicle utilization
   - Charging station usage
@@ -226,8 +231,9 @@ If you use this work in your research, please cite our IEEE paper:
 ## 📞 Contact
 
 For questions or collaboration opportunities, please reach out through:
+
 - GitHub Issues
-- Email: [contact information]
+- Email: chanakyavasantha@gmail.com
 
 ---
 
@@ -246,4 +252,3 @@ This README includes:
 9. **Professional formatting** with proper sections and styling
 
 You can copy and paste this directly into your readme.md file!
-        
